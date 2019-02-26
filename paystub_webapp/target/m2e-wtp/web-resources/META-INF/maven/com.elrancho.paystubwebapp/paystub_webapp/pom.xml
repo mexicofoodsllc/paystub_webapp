@@ -43,13 +43,13 @@
 	    <artifactId>spring-boot-starter-data-jpa</artifactId>
 	</dependency>
 	
-	<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc (Microsoft JDBC Driver For SQL Server) -->
+	<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc (Microsoft JDBC Driver For SQL Server) 
 	<dependency>
 	    <groupId>com.microsoft.sqlserver</groupId>
 	    <artifactId>mssql-jdbc</artifactId>
 	    <version>7.2.1.jre11</version>
 	    <scope>test</scope>
-	</dependency>
+	</dependency>-->
  	
  	<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -57,11 +57,11 @@
 			<scope>runtime</scope>
 	</dependency>
 	<!-- In memory db because sql server is failing -->
-	<!--  <dependency>
+	  <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-	</dependency>-->
+	  </dependency>
     
   </dependencies>
 

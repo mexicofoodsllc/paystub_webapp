@@ -9,17 +9,16 @@ import javax.validation.constraints.NotNull;
 @Table(name="Users")
 public class Users {
 
-	
-	long employeeId;
 	@NotNull
 	@Id
 	String username;
+	int employeeId;
 	String password;
 	
-	public long getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(long employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 	public String getUsername() {
