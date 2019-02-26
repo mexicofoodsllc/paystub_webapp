@@ -36,13 +36,6 @@
       <artifactId>tomcat-embed-jasper</artifactId>
       <scope>provided</scope>
     </dependency>
-    
-   <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api 
-	<dependency>
-	    <groupId>javax.persistence</groupId>
-	    <artifactId>javax.persistence-api</artifactId>
-	    <version>2.2</version>
-	</dependency>-->
 
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa (includes hibernate)-->
 	<dependency>
@@ -64,11 +57,11 @@
 			<scope>runtime</scope>
 	</dependency>
 	<!-- In memory db because sql server is failing -->
-	<dependency>
+	<!--  <dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-	</dependency>
+	</dependency>-->
     
   </dependencies>
 
