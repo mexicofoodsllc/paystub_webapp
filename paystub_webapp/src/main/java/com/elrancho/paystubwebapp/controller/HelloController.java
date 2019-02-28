@@ -18,7 +18,7 @@ public class HelloController {
 	 //returns index.jsp
    @RequestMapping("/")
    public String index() {
-      return "index";
+      return "login";
    }
 
    @PostMapping("/login")
