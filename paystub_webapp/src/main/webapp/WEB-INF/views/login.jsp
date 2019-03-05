@@ -4,35 +4,59 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<!-- Static content -->
-<link rel="stylesheet" href="/resources/css/style.css">
-<script type="text/javascript" src="/resources/js/app.js"></script>
+	<!-- Static content -->
+	<link rel="stylesheet" href="/resources/css/style.css">
+	<script type="text/javascript" src="/resources/js/app.js"></script>
+	
+	<title>Employee Login</title>
+	<style>
 
-<title>Employee Login</title>
+		.margin{
+		    margin-top: 100px;
+		}
+		.button_style{
+        	
+        	background-color: #EC1313;
+        	color:white;
+        	border-color: #EC1313;
+        }
+        body{
+        background-image:url("http://testosteronelawsuitg.info/wp-content/uploads/2018/11/light-blue-star-background-light-blue-star-background-design-2.jpg")
+        }
+	</style>
 </head>
+
 <body>
    <div class="container">
-   
-  	<h2 style="text-align:center"><strong>Login to View, Download and Print your PayStub</strong></h2>
+
   	
-  <div class="jumbotron">
-  
+  <div class="jumbotron margin">
+  <img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="200"/>
     <form action="login" method="post">
-    <div class="form-group">
-     User Name<input type="text" name="username" class="form-control" placeholder="Username" required/>
-    </div>
-    <div class="form-group">
-     Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
-          </div>
-           <div class="form-group"> 
-              <input type="submit" value="Login" class="btn btn-primary btn-block"/>
-           </div>
-    
-   </form>
+    	<h3>Employee Login</h3>
+    	<p>Login to View, Download and Print your PayStub</p>
+	    <div class="form-group">
+	     	User Name<input type="text" name="username" class="form-control" placeholder="Username" required/>
+	    </div>
+    	<div class="form-group">
+     		Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
+        </div>
+        <div class="form-group"> 
+              <input type="submit" value="Login" class="btn btn-primary btn-default button_style"/>
+        </div>
+     </form>
    
    	<div class="bottom-container">
-	  	<a href="/register.jsp" class="btn btn-primary btn-default">Register</a>
-	  	<a href="#" class="btn btn-primary btn-danger">Forgot password?</a>
+   		<form action="/register" method="post">
+   			<div class="form-group">
+	  			<input type="submit"class="btn btn-primary btn-default button_style" value="Register"/>
+	  		</div>
+	  	</form>
+	  	<form action="/pwdmanagement" method="post">
+	  		<div class="form-group">
+	  			<input type="submit"class="btn btn-primary btn-danger" value="Forgot Password?"/>
+	  		</div>
+	  	</form>
 	</div>
   </div>
   <div class="footer">

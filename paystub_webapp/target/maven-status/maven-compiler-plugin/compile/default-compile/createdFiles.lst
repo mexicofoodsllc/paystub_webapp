@@ -1,8 +1,10 @@
-com\elrancho\paystubwebapp\entity\Paystub.class
 com\elrancho\paystubwebapp\entity\Users.class
 com\elrancho\paystubwebapp\controller\HelloController.class
 com\elrancho\paystubwebapp\MainApp.class
-com\elrancho\paystubwebapp\service\EmployeeService.class
 com\elrancho\paystubwebapp\service\EmployeeServiceImpl.class
+com\elrancho\paystubwebapp\dao\PaystubRepository.class
+com\elrancho\paystubwebapp\entity\Paystub.class
+com\elrancho\paystubwebapp\service\EmployeeService.class
 com\elrancho\paystubwebapp\dao\EmployeeRepository.class
+com\elrancho\paystubwebapp\dao\UsersRepository.class
 com\elrancho\paystubwebapp\entity\Employee.class

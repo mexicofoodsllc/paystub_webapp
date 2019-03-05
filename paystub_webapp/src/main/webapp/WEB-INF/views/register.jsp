@@ -17,7 +17,7 @@
   	
   <div class="jumbotron">
   
-    <form action="register" method="post">
+    <form action="/" method="post">
     <div class="form-group">
      First Name<input type="text" name="fname" class="form-control" placeholder="Fist Name" required/>
     </div>
@@ -34,20 +34,16 @@
      Confirm Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
      </div>
            <div class="form-group"> 
-              <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+              <input type="submit" value="Register" class="btn btn-primary btn-block"/>
            </div>
-    
+  
    </form>
-   
-   	<div class="bottom-container">
-	  	<a href="#" class="btn btn-primary btn-default">Register</a>
-	  	<a href="#" class="btn btn-primary btn-danger">Forgot password?</a>
-	</div>
-  </div>
+  </div> 
+</div> 
   <div class="footer">
    <p>&copy ElRancho Supermercado</p>
   </div>
- </div>
+
  <script src="https://chancejs.com/chance.min.js"></script>
     <!-- Latest compiled and minified CSS -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

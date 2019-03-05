@@ -17,14 +17,34 @@ public class HelloController {
 	 
 	 //returns index.jsp
    @RequestMapping("/")
-   public String index() {
+   public String login() {
       return "login";
    }
-
+   
+   @PostMapping("/register")
+   public String registerEmployee() {
+	   return "register";
+   }
+   
+   @PostMapping("/pwdmanagement")
+   public String resetPassword() {
+	   return "resetpwd";
+   }
+   
    @PostMapping("/login")
    public String sayHello(@RequestParam("username") String name, Model model) {
       model.addAttribute("username", name);
-     // if(name=employeeService.findById())
-      return "home";
+     
+      return "paystubSummary";
+   }
+   
+   @PostMapping("/paystubDetail")
+   public String getPaystubDetails() {
+	   return "paystubDetail";
+   }
+   
+   @PostMapping("/paystubSummary")
+   public String getPaystubSummary() {
+	   return "paystubSummary";
    }
 }
