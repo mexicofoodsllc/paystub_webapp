@@ -15,6 +15,7 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
   	<script>
+	var toDate = $("#datepicker2").val();
 	$( function() {
 	    $( "#datepicker1" ).datepicker();
 	    
@@ -23,16 +24,20 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
 	
-	$(document).ready(function(){
-		$("#id_pay_date").click(function(){
+	$("#datepicker2").focusout(function(){
 			$.ajax({
-				
-				success:function(data){
-					$("#id_date").html(data);
-				}
+				type:'Get',
+				url:'fetch',
+				data : "datepicker2=" + toDate,    
+			    success : function(response) {    
+				      alert(response);     
+				     },    
+				error : function(e) {    
+				      alert('Error: ' + e);     
+				     } 
 			});
-		});
 	});
+	
 	
   	
   	</script>
@@ -146,10 +151,6 @@
         </div>
     </nav>
     
-    <%
- 		 PaystubServiceImpl p= new PaystubServiceImpl();
- 		 p.findEmpIdbyId(1);
-	%>
 
     <div class="container">
         <div class="jumbotron" style="height: 600px">
@@ -158,15 +159,12 @@
            	</div>
             
             <div>
-            	<form action="fetch" method="get">
-            		<p id="calenderTitle">View paychecks from:</p>
-	            	<input type="text" name="from" id="datepicker1" />
-	            	<p>to</p>
-	            	<input type="text" id="datepicker2"/>
-	            	<input type="submit" id="id_server_time" value="Submit"/>
-	           		<!--<p id="id_date"></p>  -->
-	           	</form>
-			</div>
+            	<p id="calenderTitle">View paychecks from:</p>
+	        <input type="text" id="datepicker1" />
+	        <p>to</p>
+	        <input type="text" id="datepicker2"/>
+	           
+	  </div>
 			
 			
            <div id="paycheckAmount" class="pay_div">
