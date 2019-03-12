@@ -47,7 +47,7 @@
   	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="200"/>
   <div class="jumbotron margin">
   
-    <form action="login" method="post">
+    <form action="home" method="post">
     	<p>Employee Login<p>
 	    <div class="form-group">
 	     	<input type="text" name="username" class="form-control" placeholder="Username" required/>

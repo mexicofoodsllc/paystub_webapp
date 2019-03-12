@@ -4,10 +4,12 @@ import java.util.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.elrancho.paystubwebapp.dao.PaystubRepository;
 import com.elrancho.paystubwebapp.entity.Paystub;
 
+@Service
 public class PaystubServiceImpl implements PaystubService {
 	
 	@Autowired 
@@ -23,7 +25,7 @@ public class PaystubServiceImpl implements PaystubService {
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
-		System.out.println("count method");
+		System.out.println("count");
 		return paystubRepository.count();
 	}
 

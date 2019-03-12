@@ -10,35 +10,34 @@ import javax.persistence.TemporalType;
 /*
  * This class is a composite id for Paystub table
  * It can be embedded into Paystub.java and 
- * employeeId, payPeriodEndDate & Description act as composite primary keys.
+ * checkControl & lineNumber act as composite primary keys.
  */
 
 @Embeddable
 public class PaystubId implements Serializable {
 	
-	private int employeeID;	
-	@Temporal(TemporalType.DATE)
-	Date payPeriodEndDate;
-	private String description;
+	private int checkControl;	
+
+	private int lineNumber;
+
+	public int getCheckControl() {
+		return checkControl;
+	}
+
+	public void setCheckControl(int checkControl) {
+		this.checkControl = checkControl;
+	}
+
+	public int getLineNumber() {
+		return lineNumber;
+	}
+
+	public void setLineNumber(int lineNumber) {
+		this.lineNumber = lineNumber;
+	}
 	
-	public int getEmployeeID() {
-		return employeeID;
-	}
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
-	}
-	public Date getPayPeriodEndDate() {
-		return payPeriodEndDate;
-	}
-	public void setPayPeriodEndDate(Date payPeriodEndDate) {
-		this.payPeriodEndDate = payPeriodEndDate;
-	}
+
+
 	
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
 }

@@ -15,11 +15,27 @@ import javax.persistence.TemporalType;
 public class Paystub {
 	
 	@EmbeddedId private PaystubId id;
-	String checkControl, dbaCode, currentAmount, ytdAmount;
+	
+	String  dbaCode, currentAmount, ytdAmount,description;
+	
+	@Temporal(TemporalType.DATE)
+	Date payPeriodEndDate; 
 	@Temporal(TemporalType.DATE)
 	Date checkDate; 
 	
-
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Date getPayPeriodEndDate() {
+		return payPeriodEndDate;
+	}
+	public void setPayPeriodEndDate(Date payPeriodEndDate) {
+		this.payPeriodEndDate = payPeriodEndDate;
+	}
+	
 	public PaystubId getId() {
 		return id;
 	}
@@ -27,12 +43,6 @@ public class Paystub {
 		this.id = id;
 	}
 	
-	public String getCheckControl() {
-		return checkControl;
-	}
-	public void setCheckControl(String checkControl) {
-		this.checkControl = checkControl;
-	}
 	public Date getCheckDate() {
 		return checkDate;
 	}

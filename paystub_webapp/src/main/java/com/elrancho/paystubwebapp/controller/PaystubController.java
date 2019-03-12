@@ -14,8 +14,8 @@ import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
 @Controller
 public class PaystubController {
 
-	//@Autowired
-	//PaystubServiceImpl psimpl;
+	@Autowired
+	PaystubServiceImpl psimpl;
 	
 	@RequestMapping("/get_time")
 	@ResponseBody  //the method return value is bound to the web response body in httpresponse (not to jsp view).
@@ -28,8 +28,10 @@ public class PaystubController {
 	 @RequestMapping(value="/fetch")
 	 @ResponseBody
 	   public void fetchResult(@RequestParam("from") @DateTimeFormat(pattern="MM/dd/yyyy") Date datepicker1) {
-		   System.out.println("**************" +datepicker1);
+		   //System.out.println("**************" +datepicker2);
 		   //System.out.println("**************" +to);
+		 
+		
 		   
 			//return datepicker1.toString() ;
 		
