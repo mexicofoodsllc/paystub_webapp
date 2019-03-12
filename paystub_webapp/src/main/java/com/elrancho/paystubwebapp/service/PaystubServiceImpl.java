@@ -14,7 +14,7 @@ public class PaystubServiceImpl implements PaystubService {
 	private PaystubRepository paystubRepository;
 
 	@Override
-	public List<Paystub> findById() {
+	public List<Paystub> findByPaystubId() {
 
 		return paystubRepository.findAll();
 		
