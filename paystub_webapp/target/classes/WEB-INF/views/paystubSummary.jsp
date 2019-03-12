@@ -15,36 +15,14 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
   	<script>
-<<<<<<< HEAD
-  	var toDate = $("#datepicker2").val();
-=======
-	var toDate = $("#datepicker2").val();
->>>>>>> 0cc47e9d182fd043fbaedadd403e90f9d0ee1a01
 	$( function() {
 	    $( "#datepicker1" ).datepicker();
-	    
-	  } );
+	     } );
 	$( function() {
 	    $( "#datepicker2" ).datepicker();
 	  } );
-	
-	$("#datepicker2").focusout(function(){
-			$.ajax({
-				type:'Get',
-				url:'fetch',
-				data : "datepicker2=" + toDate,    
-			    success : function(response) {    
-				      alert(response);     
-				     },    
-				error : function(e) {    
-				      alert('Error: ' + e);     
-				     } 
-			});
-	});
-	
-	
-  	
   	</script>
+    
     <style>
     .navbar-color {
             background-color: #eee;
@@ -94,7 +72,7 @@
         
         
          body{
-        background-image:url("http://testosteronelawsuitg.info/wp-content/uploads/2018/11/light-blue-star-background-light-blue-star-background-design-2.jpg")
+        background-image:url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/06/36/6856299993ea2f8.jpg")
         }
 
         .nav>li:hover {
@@ -155,10 +133,7 @@
         </div>
     </nav>
     
-<<<<<<< HEAD
-=======
 
->>>>>>> 0cc47e9d182fd043fbaedadd403e90f9d0ee1a01
     <div class="container">
         <div class="jumbotron" style="height: 600px">
         	<div>
@@ -166,20 +141,16 @@
            	</div>
             
             <div>
-<<<<<<< HEAD
+
             		<p id="calenderTitle">View paychecks from:</p>
 	            	<input type="text" id="datepicker1" />
 	            	<p>to</p>
 	            	<input type="text" id="datepicker2"/>
 			</div>
-=======
-            	<p id="calenderTitle">View paychecks from:</p>
-	        <input type="text" id="datepicker1" />
-	        <p>to</p>
-	        <input type="text" id="datepicker2"/>
-	           
-	  </div>
->>>>>>> 0cc47e9d182fd043fbaedadd403e90f9d0ee1a01
+
+          
+	      </div>
+
 			
 			
            <div id="paycheckAmount" class="pay_div">
