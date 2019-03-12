@@ -12,7 +12,7 @@
 	<style>
 
 		.margin{
-		    margin-top: 100px;
+		    margin-top: 25px;
 		}
 		.button_style{
         	
@@ -20,26 +20,40 @@
         	color:white;
         	border-color: #EC1313;
         }
+        p{
+        font-size:15px;
+        }
         body{
         background-image:url("http://testosteronelawsuitg.info/wp-content/uploads/2018/11/light-blue-star-background-light-blue-star-background-design-2.jpg")
         }
+        
+         /* On screens that are 900px or less, set set the jumbotron width*/
+        @media screen and (max-width: 900px) {
+            .jumbotron {
+                 width: 40%;
+            }
+        }
+         /* On screens that are 600px or less, set the jumbotron width */
+         @media screen and (max-width: 600px) {
+            .jumbotron {
+                width: 100%;
+            }
 	</style>
 </head>
 
 <body>
    <div class="container">
 
-  	
+  	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="200"/>
   <div class="jumbotron margin">
-  <img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="200"/>
+  
     <form action="login" method="post">
-    	<h3>Employee Login</h3>
-    	<p>Login to View, Download and Print your PayStub</p>
+    	<p>Employee Login<p>
 	    <div class="form-group">
-	     	User Name<input type="text" name="username" class="form-control" placeholder="Username" required/>
+	     	<input type="text" name="username" class="form-control" placeholder="Username" required/>
 	    </div>
     	<div class="form-group">
-     		Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
+     		<input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
         </div>
         <div class="form-group"> 
               <input type="submit" value="Login" class="btn btn-primary btn-default button_style"/>

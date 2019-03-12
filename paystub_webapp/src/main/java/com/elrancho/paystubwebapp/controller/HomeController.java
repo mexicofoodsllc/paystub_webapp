@@ -1,19 +1,19 @@
 package com.elrancho.paystubwebapp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.elrancho.paystubwebapp.entity.Users;
-import com.elrancho.paystubwebapp.service.EmployeeService;
+import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
+
 
 @Controller
-public class HelloController {
-
-	 private EmployeeService employeeService;
+public class HomeController {
 	
+
 	 
 	 //returns index.jsp
    @RequestMapping("/")
@@ -34,17 +34,8 @@ public class HelloController {
    @PostMapping("/login")
    public String sayHello(@RequestParam("username") String name, Model model) {
       model.addAttribute("username", name);
-     
+      
       return "paystubSummary";
    }
-   
-   @PostMapping("/paystubDetail")
-   public String getPaystubDetails() {
-	   return "paystubDetail";
-   }
-   
-   @PostMapping("/paystubSummary")
-   public String getPaystubSummary() {
-	   return "paystubSummary";
-   }
+ 
 }

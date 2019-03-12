@@ -3,8 +3,8 @@ package com.elrancho.paystubwebapp.entity;
 
 import java.util.Date;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,26 +14,17 @@ import javax.persistence.TemporalType;
 @Table(name="Paystub")
 public class Paystub {
 	
-	
-	@Id
-	int employeeID;	
-	String checkControl, dbaCode, description, currentAmount, ytdAmount;
+	@EmbeddedId private PaystubId id;
+	String checkControl, dbaCode, currentAmount, ytdAmount;
 	@Temporal(TemporalType.DATE)
-	Date payPeriodEndDate;
-	@Temporal(TemporalType.DATE)
-	Date checkDate;
+	Date checkDate; 
 	
-	public int getEmployeeID() {
-		return employeeID;
+
+	public PaystubId getId() {
+		return id;
 	}
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
-	}
-	public Date getpayPeriodEndDate() {
-		return payPeriodEndDate;
-	}
-	public void setPayPeriod(Date payPeriodEndDate) {
-		this.payPeriodEndDate = payPeriodEndDate;
+	public void setId(PaystubId id) {
+		this.id = id;
 	}
 	
 	public String getCheckControl() {
@@ -54,12 +45,7 @@ public class Paystub {
 	public void setDbaCode(String dbaCode) {
 		this.dbaCode = dbaCode;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+
 	public String getCurrentAmount() {
 		return currentAmount;
 	}

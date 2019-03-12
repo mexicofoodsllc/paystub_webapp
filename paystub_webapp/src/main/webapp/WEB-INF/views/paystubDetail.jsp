@@ -136,13 +136,7 @@
             .pay_div {
                 font-size: 15px;
             }
-            
-             .paystub_btn{
-    			margin: 0px;
-    			padding: 0px;
-    			color:#ba150f;
-    			background-color:#eee;
-        }
+           
         }
     </style>
 </head>
