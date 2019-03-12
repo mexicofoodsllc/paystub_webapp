@@ -18,7 +18,7 @@ public class PaystubId implements Serializable {
 	
 	private int checkControl;	
 
-	private int lineNumber;
+	private int lineNumber; 
 
 	public int getCheckControl() {
 		return checkControl;

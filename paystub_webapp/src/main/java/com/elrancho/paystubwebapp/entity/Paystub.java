@@ -19,7 +19,7 @@ public class Paystub {
 	String  dbaCode, currentAmount, ytdAmount,description;
 	
 	@Temporal(TemporalType.DATE)
-	Date payPeriodEndDate; 
+	Date payPeriodEndDate;  
 	@Temporal(TemporalType.DATE)
 	Date checkDate; 
 	
