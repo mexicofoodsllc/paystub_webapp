@@ -15,7 +15,11 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
   	<script>
+<<<<<<< HEAD
   	var toDate = $("#datepicker2").val();
+=======
+	var toDate = $("#datepicker2").val();
+>>>>>>> 0cc47e9d182fd043fbaedadd403e90f9d0ee1a01
 	$( function() {
 	    $( "#datepicker1" ).datepicker();
 	    
@@ -37,6 +41,7 @@
 				     } 
 			});
 	});
+	
 	
   	
   	</script>
@@ -150,6 +155,10 @@
         </div>
     </nav>
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0cc47e9d182fd043fbaedadd403e90f9d0ee1a01
     <div class="container">
         <div class="jumbotron" style="height: 600px">
         	<div>
@@ -157,11 +166,20 @@
            	</div>
             
             <div>
+<<<<<<< HEAD
             		<p id="calenderTitle">View paychecks from:</p>
 	            	<input type="text" id="datepicker1" />
 	            	<p>to</p>
 	            	<input type="text" id="datepicker2"/>
 			</div>
+=======
+            	<p id="calenderTitle">View paychecks from:</p>
+	        <input type="text" id="datepicker1" />
+	        <p>to</p>
+	        <input type="text" id="datepicker2"/>
+	           
+	  </div>
+>>>>>>> 0cc47e9d182fd043fbaedadd403e90f9d0ee1a01
 			
 			
            <div id="paycheckAmount" class="pay_div">
