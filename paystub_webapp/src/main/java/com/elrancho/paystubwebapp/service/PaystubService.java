@@ -7,7 +7,7 @@ import com.elrancho.paystubwebapp.entity.Paystub;
 
 public interface PaystubService {
 	
-	public List<Paystub> findById();
+	public List<Paystub> findByPaystubId();
 	public long count();
 
 }
