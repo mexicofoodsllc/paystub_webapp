@@ -1,15 +1,13 @@
 package com.elrancho.paystubwebapp.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.elrancho.paystubwebapp.entity.Paystub;
 import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
 
 
@@ -41,6 +39,11 @@ public class HomeController {
       //List<Paystub> al= psimpl.findByPaystubId()
       //System.out.println(psimpl.count());
       return "paystubSummary";
+   }
+   
+   @GetMapping("/paystubDetail")
+   public String paystubDetail() {
+	   return "paystubDetail";
    }
  
 }

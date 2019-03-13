@@ -24,7 +24,8 @@ public class PaystubServiceImpl implements PaystubService {
 		
 		List<Paystub> paystubList = paystubRepository.findAll();
 		
-		
+		System.out.println("********************"+paystubList.get(2));
+		System.out.println("********************"+paystubList.get(3));
 		//model.addAttribute("Gross Pay", paystubList.)
 
 		return paystubList;

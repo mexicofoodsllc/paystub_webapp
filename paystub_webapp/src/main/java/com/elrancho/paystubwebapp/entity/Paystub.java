@@ -72,8 +72,9 @@ public class Paystub {
 	//overriding a toString method to get required String representation
 	@Override
 	public String toString() {
-	    return "description: " + this.getDescription() + 
-	           ", payPeriodEndDate: " + this.getPayPeriodEndDate()+ ", currentAmount:"+this.getCurrentAmount();
+	    /*return "description: " + this.getDescription() + 
+	          ", payPeriodEndDate: " + this.getPayPeriodEndDate()+ ", currentAmount:"+this.getCurrentAmount();*/
+		return this.getCurrentAmount();
 	}
 
 }

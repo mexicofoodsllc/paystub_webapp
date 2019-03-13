@@ -22,11 +22,11 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
 	
-	$(document).ready(function(){
+	/*$(document).ready(function(){
 		$( "table" ).on( "click", "tr", function() {
-			location.href = "paystubDetail.jsp";
+			location.href = "http://ec2-3-90-133-23.compute-1.amazonaws.com:8080/paystub_webapp/paystubDetail.jsp";
 			});
-	});
+	});*/
   	</script>
     
     <style>
@@ -188,9 +188,11 @@
 					  <tr class="table-row">
 						<td class="latestPaycheckLabel">${datepicker2}</td>
 						<td class="latestPaycheckLabel">${datepicker1} - ${datepicker2}</td>
-						<td class="latestPaycheckNumber"></td>
-						 <td class="latestPaycheckNumber"></td> 
+						<td class="latestPaycheckNumber">${gross}</td>
+						 <td class="latestPaycheckNumber">${net}</td> 
+						 <td><form action="paystubDetail"><input type="submit" value="Paystub Detail" /></form></td>
 					    </tr>
+					   
 				  </tbody>
 				  </table>
             </div>

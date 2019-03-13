@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,12 +27,19 @@ public class PaystubController {
 			   @RequestParam("to") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate datepicker2, Model model) {
 		   
 		   
+		   List<Paystub> l = psimpl.findByPaystubId();
+		   Paystub gross = l.get(2);
+		   Paystub net = l.get(3);
+		   
 		   model.addAttribute("datepicker1", datepicker1);
 		   model.addAttribute("datepicker2", datepicker2);
-		   
-		   List<Paystub> l = psimpl.findByPaystubId();
-		 
+		   model.addAttribute("gross", gross);
+		   model.addAttribute("net", net);
 			return "paystubSummary";
 		
+	   }
+	   @PostMapping("/paystubSummary")
+	   public String paystubSummary() {
+		   return "paystubSummary";
 	   }
 }

@@ -94,7 +94,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
                     <li>
-                    	<form action="/paystubSummary" method="post">
+                    	<form action="paystubSummary" method="post">
                     		<input type="submit" value="Paystub Summary" class="paystub_btn"/>
                     	</form>
                     </li>
@@ -119,91 +119,23 @@
 
 
                         <tr>
+                            <td class="latestPaycheckLabel">Total Hours</td>
+                            <td class="latestPaycheckNumber">10.00</td>
+                        </tr>
+                        <tr>
                             <td class="latestPaycheckLabel">Total Earnings</td>
                             <td class="latestPaycheckNumber">$100.00</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">Overtime 1.5</td>
-                            <td class="latestPaycheckNumber">10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Federal Income Tax</td>
+                            <td class="latestPaycheckLabel">Pre-Tax Deductions</td>
                             <td class="latestPaycheckNumber">$5.00</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">Federal FICA Withheld</td>
+                            <td class="latestPaycheckLabel">Taxes</td>
                             <td class="latestPaycheckNumber">$16.65</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">401(K) LOAN</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Accident</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Adj (Reg)</td>
-                            <td class="latestPaycheckNumber">$5.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Adj. (OT)</td>
-                            <td class="latestPaycheckNumber">$16.65</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Bonus</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Bonus A</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">BuyUp</td>
-                            <td class="latestPaycheckNumber">$16.65</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Child Life</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">CorePlan Ins</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Critical Ill</td>
-                            <td class="latestPaycheckNumber">$5.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Den High All</td>
-                            <td class="latestPaycheckNumber">$16.65</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Den Low All</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">LTD</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Meal Reimbursement</td>
-                            <td class="latestPaycheckNumber">$16.65</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Mileage Reimbursement</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Misc.</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">OneTime HrAd</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Other</td>
+                            <td class="latestPaycheckLabel">After-Tax Adjustments</td>
                             <td class="latestPaycheckNumber">$10.00</td>
                         </tr>
                         <tr>
