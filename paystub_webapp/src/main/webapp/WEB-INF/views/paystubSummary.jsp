@@ -21,6 +21,12 @@
 	$( function() {
 	    $( "#datepicker2" ).datepicker();
 	  } );
+	
+	$(document).ready(function(){
+		$( "table" ).on( "click", "tr", function() {
+			location.href = "paystubDetail.jsp";
+			});
+	});
   	</script>
     
     <style>
@@ -32,17 +38,26 @@
         }
         
         
-
+		.calenderdiv_style{
+			width: 40%;
+		}
 
         .pay_header{
         	font-weight:bold;
         }
         
+        .paystub_btn{
+        	    background-color: #ba150f;
+    			margin: 50px;
+   				color: white;
+    			border: #eee;
+    			padding: 23px;
+        }
 
         .pay_div{
         	    float: right;
         	    position: relative;
-        	    bottom: 126px;
+        	    bottom: 500px;
         	    right: 170px;
         }
 		
@@ -64,8 +79,8 @@
     			
         }
         
-        table-row{
-			cursor: pointer !important;
+        .table-row{
+			cursor: pointer;
 		
 		}
         
@@ -101,6 +116,8 @@
          @media screen and (max-width: 600px) {
             .pay_div {
                 font-size: 15px;
+                bottom: 315px;
+                right: 10%;
                  
  			}
         }
@@ -140,12 +157,14 @@
            	 <h3>Welcome ${username},</h3>
            	</div>
             
-            <div>
-
+            <div class="calenderdiv_style">
+				<form action="fetch_paystub" method="post">
             		<p id="calenderTitle">View paychecks from:</p>
-	            	<input type="text" id="datepicker1" />
+	            	<input type="text" id="datepicker1" name="from"/>
 	            	<p>to</p>
-	            	<input type="text" id="datepicker2"/>
+	            	<input type="text" id="datepicker2" name="to"/>
+	            	<input type="submit" value="Paystub Summary" class="paystub_btn"/>
+	            </form>
 			</div>
 
           
@@ -166,12 +185,11 @@
 				  </thead>
 				  <tbody>
 					    
-					  <tr class="table-row" style="cursor: pointer">
-						<td class="latestPaycheckLabel">12/12/2012</td>
-						<td class="latestPaycheckLabel">12/06/2012 - 12/12/2012</td>
-						<td class="latestPaycheckNumber">$68.35</td>
-						 <td class="latestPaycheckNumber">$50</td>
-						 
+					  <tr class="table-row">
+						<td class="latestPaycheckLabel">${datepicker2}</td>
+						<td class="latestPaycheckLabel">${datepicker1} - ${datepicker2}</td>
+						<td class="latestPaycheckNumber"></td>
+						 <td class="latestPaycheckNumber"></td> 
 					    </tr>
 				  </tbody>
 				  </table>

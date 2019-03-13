@@ -5,6 +5,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.elrancho.paystubwebapp.dao.PaystubRepository;
 import com.elrancho.paystubwebapp.entity.Paystub;
@@ -15,17 +16,25 @@ public class PaystubServiceImpl implements PaystubService {
 	@Autowired 
 	private PaystubRepository paystubRepository;
 
+	
+	Model model;
+
 	@Override
 	public List<Paystub> findByPaystubId() {
+		
+		List<Paystub> paystubList = paystubRepository.findAll();
+		
+		
+		//model.addAttribute("Gross Pay", paystubList.)
 
-		return paystubRepository.findAll();
+		return paystubList;
 		
 	}
 
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
-		System.out.println("count");
+		//System.out.println("count");
 		return paystubRepository.count();
 	}
 

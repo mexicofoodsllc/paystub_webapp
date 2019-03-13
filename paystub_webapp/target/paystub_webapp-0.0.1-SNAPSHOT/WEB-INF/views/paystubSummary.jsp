@@ -1,37 +1,49 @@
+<%@ page import="com.elrancho.paystubwebapp.service.PaystubServiceImpl"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Paystub Detail</title>
+    <title>Paystub Summary</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  	<link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	
+  	<script>
+	$( function() {
+	    $( "#datepicker1" ).datepicker();
+	     } );
+	$( function() {
+	    $( "#datepicker2" ).datepicker();
+	  } );
+	
+	$(document).ready(function(){
+		$( "table" ).on( "click", "tr", function() {
+			location.href = "paystubDetail.jsp";
+			});
+	});
+  	</script>
+    
     <style>
-        .navbar-color {
+    .navbar-color {
             background-color: #eee;
             margin-top: 60px;
             padding: 1pc;
             font-size: 20px
         }
+        
+        
+		.calenderdiv_style{
+			width: 40%;
+		}
 
-        h3 {
-            font-size: 20px;
-            color: #777;
-            font: 22px "DINNextLTPro-Regular", sans-serif;
-        }
-
-        .pay_div {
-            color: #777;
-            font: 20px "HelveticaNeue-Roman", sans-serif;
-            margin: 50px 0;
-        }
-        .button_style{
-        	padding: 10px;
-        	background-color: #ba150f;
-        	color:white;
-        	border-color: #ba150f;
+        .pay_header{
+        	font-weight:bold;
         }
         
         .paystub_btn{
@@ -41,9 +53,41 @@
     			border: #eee;
     			padding: 23px;
         }
+
+        .pay_div{
+        	    float: right;
+        	    position: relative;
+        	    bottom: 500px;
+        	    right: 170px;
+        }
+		
+	   .pay_span{
+		padding: 15px;
+		margin:10px;
+		}
+		
+		.pay_period{
+			margin: 28px;
+		}
+		
+		.net_pay{
+		 margin: 31px;
+		 }
+        
+        h2{
+        	    color: #ba150f;
+    			
+        }
+        
+        .table-row{
+			cursor: pointer;
+		
+		}
+        
+        
         
          body{
-        background-image:url("http://testosteronelawsuitg.info/wp-content/uploads/2018/11/light-blue-star-background-light-blue-star-background-design-2.jpg")
+        background-image:url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/06/36/6856299993ea2f8.jpg")
         }
 
         .nav>li:hover {
@@ -53,74 +97,7 @@
             opacity: 0.6 !important;
         }
 
-        .custom-select {
-            position: relative;
-            font-family: Arial;
-            width: 122px;
-        }
-
-        .custom-select select {
-            display: none;
-            /*hide original SELECT element:*/
-        }
-
-        .select-selected {
-            background-color: #ba150f;
-        }
-
-        /*style the arrow inside the select element:*/
-
-        .select-selected:after {
-            position: absolute;
-            content: "";
-            top: 14px;
-            right: 10px;
-            width: 0;
-            height: 0;
-            border: 6px solid transparent;
-            border-color: #fff transparent transparent transparent;
-        }
-
-        /*point the arrow upwards when the select box is open (active):*/
-
-        .select-selected.select-arrow-active:after {
-            border-color: transparent transparent #fff transparent;
-            top: 7px;
-        }
-
-        /*style the items (options), including the selected item:*/
-
-        .select-items div,
-        .select-selected {
-            color: #ffffff;
-            padding: 8px 16px;
-            border: 1px solid transparent;
-            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        /*style items (options):*/
-
-        .select-items {
-            position: absolute;
-            background-color: #ba150f;
-            top: 100%;
-            left: 0;
-            right: 0;
-            z-index: 99;
-        }
-
-        /*hide the items when the select box is closed:*/
-
-        .select-hide {
-            display: none;
-        }
-
-        .select-items div:hover,
-        .same-as-selected {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
+     
 
         .latestPaycheckNetPayLabel,
         .latestPaycheckNetPayNumber {
@@ -128,28 +105,21 @@
         }
 
        
-
-
-        /* On screens that are 900px or less, set the background color to olive */
+        /* On screens that are 900px or less (tablet), set the background color to olive */
         @media screen and (max-width: 900px) {
             .pay_div {
                 font-size: 18px;
             }
         }
 
-         /* On screens that are 600px or less, set the background color to olive */
+         /* On screens that are 600px(mobile) or less, set the below properties */
          @media screen and (max-width: 600px) {
             .pay_div {
                 font-size: 15px;
-            }
-            
-             .paystub_btn{
-    			margin: 0px;
-    			padding: 0px;
-    			color:#ba150f;
-    			background-color:#eee;
-        }
-            
+                bottom: 315px;
+                right: 10%;
+                 
+ 			}
         }
     </style>
 </head>
@@ -170,115 +140,66 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                	<li><input type="submit" value="Paystub Summary" class="paystub_btn"/></li>
-                    <li>
-                    	<form action="/paystubDetail" method="post">
-                    		<input type="submit" value="Paystub Detail" class="paystub_btn"/>
-                    	</form>
-                    </li>
-                    
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+            	
+                <h2><strong>Paystub Home</strong></h2>
+                 
+            	<ul class="nav navbar-nav navbar-right">
                     <li><a href="#"  style="color:#ba150f;"><span class="glyphicon glyphicon-log-out"  style="color:#ba150f;"></span> Logout</a></li>
-                </ul>
+             	</ul>
             </div>
         </div>
     </nav>
+    
 
     <div class="container">
-        <div class="jumbotron" style="height: 500px">
-            <h3>Welcome ${username},</h3>
-            <!--surround the select box with a "custom-select" DIV element-->
-            <div class="custom-select">
-                <select>
-                    <option value="0">Select Date</option>
-                    <option value="1">03/01/2019</option>
-                    <option value="2">02/15/2019</option>
-                </select>
+        <div class="jumbotron" style="height: 600px">
+        	<div>
+           	 <h3>Welcome ${username},</h3>
+           	</div>
+            
+            <div class="calenderdiv_style">
+				<form action="fetch_paystub" method="post">
+            		<p id="calenderTitle">View paychecks from:</p>
+	            	<input type="text" id="datepicker1" name="from"/>
+	            	<p>to</p>
+	            	<input type="text" id="datepicker2" name="to"/>
+	            	<input type="submit" value="Paystub Summary" class="paystub_btn"/>
+	            </form>
+			</div>
+
+          
+	      </div>
+
+			
+			
+           <div id="paycheckAmount" class="pay_div">
+            	
+                 <table class="table table-hover">
+				  <thead>
+				    <tr>
+				    	<th>PAY DATE</th>
+     					<th>PAY PERIOD</th>
+     					<th>GROSS PAY</th>
+     					<th>NET PAY</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+					    
+					  <tr class="table-row">
+						<td class="latestPaycheckLabel">${datepicker2}</td>
+						<td class="latestPaycheckLabel">${datepicker1} - ${datepicker2}</td>
+						<td class="latestPaycheckNumber"></td>
+						 <td class="latestPaycheckNumber"></td> 
+					    </tr>
+				  </tbody>
+				  </table>
             </div>
-            <div class="latestPaycheckNetPayLabel pay_div">Your pay for week 03/04/2019 is $420.</div>
-            <div><input type="submit" value="Paystub Detail" class="button_style" title="Click here to view paystub details" /></div>
+           
         </div>
         <div class="footer">
             <p>&copy ElRancho Supermercado</p>
         </div>
     </div>
-    <script>
-        var x, i, j, selElmnt, a, b, c;
-        /*look for any elements with the class "custom-select":*/
-        x = document.getElementsByClassName("custom-select");
-        for (i = 0; i < x.length; i++) {
-            selElmnt = x[i].getElementsByTagName("select")[0];
-            /*for each element, create a new DIV that will act as the selected item:*/
-            a = document.createElement("DIV");
-            a.setAttribute("class", "select-selected");
-            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-            x[i].appendChild(a);
-            /*for each element, create a new DIV that will contain the option list:*/
-            b = document.createElement("DIV");
-            b.setAttribute("class", "select-items select-hide");
-            for (j = 1; j < selElmnt.length; j++) {
-                /*for each option in the original select element,
-                create a new DIV that will act as an option item:*/
-                c = document.createElement("DIV");
-                c.innerHTML = selElmnt.options[j].innerHTML;
-                c.addEventListener("click", function (e) {
-                    /*when an item is clicked, update the original select box,
-                    and the selected item:*/
-                    var y, i, k, s, h;
-                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                    h = this.parentNode.previousSibling;
-                    for (i = 0; i < s.length; i++) {
-                        if (s.options[i].innerHTML == this.innerHTML) {
-                            s.selectedIndex = i;
-                            h.innerHTML = this.innerHTML;
-                            y = this.parentNode.getElementsByClassName("same-as-selected");
-                            for (k = 0; k < y.length; k++) {
-                                y[k].removeAttribute("class");
-                            }
-                            this.setAttribute("class", "same-as-selected");
-                            break;
-                        }
-                    }
-                    h.click();
-                });
-                b.appendChild(c);
-            }
-            x[i].appendChild(b);
-            a.addEventListener("click", function (e) {
-                /*when the select box is clicked, close any other select boxes,
-                and open/close the current select box:*/
-                e.stopPropagation();
-                closeAllSelect(this);
-                this.nextSibling.classList.toggle("select-hide");
-                this.classList.toggle("select-arrow-active");
-            });
-        }
-
-        function closeAllSelect(elmnt) {
-            /*a function that will close all select boxes in the document,
-            except the current select box:*/
-            var x, y, i, arrNo = [];
-            x = document.getElementsByClassName("select-items");
-            y = document.getElementsByClassName("select-selected");
-            for (i = 0; i < y.length; i++) {
-                if (elmnt == y[i]) {
-                    arrNo.push(i)
-                } else {
-                    y[i].classList.remove("select-arrow-active");
-                }
-            }
-            for (i = 0; i < x.length; i++) {
-                if (arrNo.indexOf(i)) {
-                    x[i].classList.add("select-hide");
-                }
-            }
-        }
-        /*if the user clicks anywhere outside the select box,
-        then close all select boxes:*/
-        document.addEventListener("click", closeAllSelect);
-    </script>
 
 </body>
 

@@ -22,7 +22,7 @@ public class HomeController {
 	 //returns index.jsp
    @RequestMapping("/")
    public String login() {
-      return "login";
+      return "index";
    }
    
    @PostMapping("/register")
@@ -39,7 +39,7 @@ public class HomeController {
    public String sayHello(@RequestParam("username") String name, Model model) {
       model.addAttribute("username", name);
       //List<Paystub> al= psimpl.findByPaystubId()
-      System.out.println(psimpl.count());
+      //System.out.println(psimpl.count());
       return "paystubSummary";
    }
  
