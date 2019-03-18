@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 
 import com.elrancho.paystubwebapp.dao.PaystubRepository;
 import com.elrancho.paystubwebapp.entity.Paystub;
+import com.elrancho.paystubwebapp.entity.PaystubId;
 
 @Service
 public class PaystubServiceImpl implements PaystubService {
@@ -25,17 +26,13 @@ public class PaystubServiceImpl implements PaystubService {
 		
 		List<Paystub> paystubList = paystubRepository.findAll();
 		
+		//trying to fetch the contents of objects in paystubList but stuck there!
 		
-			System.out.println(paystubList.get(0));
-			System.out.println(paystubList.get(1));
-			System.out.println(paystubList.get(2));
-			System.out.println(paystubList.get(3));
-			System.out.println(paystubList.get(4));
-			System.out.println(paystubList.get(5));
+			for(Paystub p: paystubList) {
+				System.out.println(p);
+			}
 			
-
 		
-
 		return paystubList;
 		
 	}
