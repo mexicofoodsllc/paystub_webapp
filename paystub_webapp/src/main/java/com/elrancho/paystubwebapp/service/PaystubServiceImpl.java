@@ -1,5 +1,6 @@
 package com.elrancho.paystubwebapp.service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -15,18 +16,25 @@ public class PaystubServiceImpl implements PaystubService {
 	
 	@Autowired 
 	private PaystubRepository paystubRepository;
-
+	private Paystub ps;
 	
-	Model model;
 
 	@Override
-	public List<Paystub> findByPaystubId() {
+	public List<Paystub> findBypayPeriodEndDate(LocalDate date) {
+		
 		
 		List<Paystub> paystubList = paystubRepository.findAll();
 		
-		System.out.println("********************"+paystubList.get(2));
-		System.out.println("********************"+paystubList.get(3));
-		//model.addAttribute("Gross Pay", paystubList.)
+		
+			System.out.println(paystubList.get(0));
+			System.out.println(paystubList.get(1));
+			System.out.println(paystubList.get(2));
+			System.out.println(paystubList.get(3));
+			System.out.println(paystubList.get(4));
+			System.out.println(paystubList.get(5));
+			
+
+		
 
 		return paystubList;
 		
@@ -35,8 +43,18 @@ public class PaystubServiceImpl implements PaystubService {
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
-		//System.out.println("count");
+		
 		return paystubRepository.count();
 	}
+
+	/*@Override
+	public List<Paystub> findByPayDate(LocalDate date) {
+		// TODO Auto-generated method stub
+		LocalDate payPeriodEndDate = date;
+		List<Paystub> paystubList = paystubRepository.findPayDateAndCurrentAmountAndDescription();
+		System.out.println("********************"+paystubList.get(2));
+		System.out.println("********************"+paystubList.get(3));
+		return paystubList;
+	}*/
 
 }

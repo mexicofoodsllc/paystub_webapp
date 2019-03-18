@@ -1,13 +1,12 @@
 package com.elrancho.paystubwebapp.entity;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 @Entity
@@ -18,10 +17,10 @@ public class Paystub {
 	
 	String  dbaCode, currentAmount, ytdAmount,description;
 	
-	@Temporal(TemporalType.DATE)
-	Date payPeriodEndDate;  
-	@Temporal(TemporalType.DATE)
-	Date checkDate; 
+	
+	LocalDate payPeriodEndDate;  
+	
+	LocalDate checkDate; 
 	
 	public String getDescription() {
 		return description;
@@ -29,10 +28,10 @@ public class Paystub {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getPayPeriodEndDate() {
+	public LocalDate getPayPeriodEndDate() {
 		return payPeriodEndDate;
 	}
-	public void setPayPeriodEndDate(Date payPeriodEndDate) {
+	public void setPayPeriodEndDate(LocalDate payPeriodEndDate) {
 		this.payPeriodEndDate = payPeriodEndDate;
 	}
 	
@@ -43,10 +42,10 @@ public class Paystub {
 		this.id = id;
 	}
 	
-	public Date getCheckDate() {
+	public LocalDate getCheckDate() {
 		return checkDate;
 	}
-	public void setCheckDate(Date checkDate) {
+	public void setCheckDate(LocalDate checkDate) {
 		this.checkDate = checkDate;
 	}
 	public String getDbaCode() {
@@ -68,13 +67,13 @@ public class Paystub {
 	public void setYtdAmount(String ytdAmount) {
 		this.ytdAmount = ytdAmount;
 	}
-
-	//overriding a toString method to get required String representation
 	@Override
 	public String toString() {
-	    /*return "description: " + this.getDescription() + 
-	          ", payPeriodEndDate: " + this.getPayPeriodEndDate()+ ", currentAmount:"+this.getCurrentAmount();*/
-		return this.getCurrentAmount();
+		return "Paystub [currentAmount=" + currentAmount + ", description=" + description + ", payPeriodEndDate="
+				+ payPeriodEndDate + "]";
 	}
 
+
+	
+	
 }

@@ -13,9 +13,7 @@ import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
 
 @Controller
 public class HomeController {
-	
-	@Autowired
-	PaystubServiceImpl psimpl;
+
 	 
 	 //returns index.jsp
    @RequestMapping("/")
@@ -36,8 +34,6 @@ public class HomeController {
    @PostMapping("/home")
    public String sayHello(@RequestParam("username") String name, Model model) {
       model.addAttribute("username", name);
-      //List<Paystub> al= psimpl.findByPaystubId()
-      //System.out.println(psimpl.count());
       return "paystubSummary";
    }
    

@@ -26,15 +26,49 @@ public class PaystubController {
 	   public String fetchResult(@RequestParam("from") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate datepicker1,
 			   @RequestParam("to") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate datepicker2, Model model) {
 		   
-		   
-		   List<Paystub> l = psimpl.findByPaystubId();
-		   Paystub gross = l.get(2);
-		   Paystub net = l.get(3);
-		   
 		   model.addAttribute("datepicker1", datepicker1);
 		   model.addAttribute("datepicker2", datepicker2);
-		   model.addAttribute("gross", gross);
-		   model.addAttribute("net", net);
+		   LocalDate saturdayDatepicker2 = null;
+		 
+		   /*String fromDay=datepicker1.getDayOfWeek().name();
+		   switch(fromDay) {
+		   
+		   case "SUNDAY":
+			   model.addAttribute("saturdayDatepicker1", datepicker1.plusDays(6));
+		   case "MONDAY": 
+			   model.addAttribute("saturdayDatepicker1", datepicker1.plusDays(5));
+		   case "TUESDAY":
+			   model.addAttribute("saturdayDatepicker1", datepicker1.plusDays(4));
+		   case "WEDNESDAY":
+			   model.addAttribute("saturdayDatepicker1", datepicker1.plusDays(3));
+		   case "THURSDAY":
+			   model.addAttribute("saturdayDatepicker1", datepicker1.plusDays(2));
+		   case "FRIDAY":
+			   model.addAttribute("saturdayDatepicker1", datepicker1.plusDays(1));
+		  
+		   }*/
+		   
+		   //making any date user has selected to the next saturday
+		   String toDay=datepicker2.getDayOfWeek().name();
+		   switch(toDay) {
+		   
+		   case "SUNDAY":saturdayDatepicker2 = datepicker2.plusDays(6);
+		   case "MONDAY":saturdayDatepicker2 = datepicker2.plusDays(5);
+		   case "TUESDAY":saturdayDatepicker2 = datepicker2.plusDays(4);
+		   case "WEDNESDAY":saturdayDatepicker2 = datepicker2.plusDays(3);
+		   case "THURSDAY":saturdayDatepicker2 = datepicker2.plusDays(2);
+		   case "FRIDAY":saturdayDatepicker2 = datepicker2.plusDays(1);
+		   }
+		   
+		  /*List<Paystub> l = psimpl.findByPaystubId();
+		   
+		   Paystub gross = l.get(2);
+		   Paystub net = l.get(3);*/
+		 
+		   model.addAttribute("gross", 100);
+		   model.addAttribute("net", 200);
+		   
+		   List<Paystub> currentAmount = psimpl.findBypayPeriodEndDate(saturdayDatepicker2);
 			return "paystubSummary";
 		
 	   }
