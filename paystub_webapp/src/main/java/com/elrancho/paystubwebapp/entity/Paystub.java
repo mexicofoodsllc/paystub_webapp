@@ -15,62 +15,127 @@ public class Paystub {
 	
 	@EmbeddedId private PaystubId id;
 	
-	String  dbaCode, currentAmount, ytdAmount,description;
-	
-	
+	String description;
+	int employeeId, dbaCode, hours;
+	float currentAmount, ytdAmount;
+
 	LocalDate payPeriodEndDate;  
 	
 	LocalDate checkDate; 
 	
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public LocalDate getPayPeriodEndDate() {
-		return payPeriodEndDate;
-	}
-	public void setPayPeriodEndDate(LocalDate payPeriodEndDate) {
-		this.payPeriodEndDate = payPeriodEndDate;
-	}
+	
 	
 	public PaystubId getId() {
 		return id;
 	}
+
+
+
 	public void setId(PaystubId id) {
 		this.id = id;
 	}
-	
-	public LocalDate getCheckDate() {
-		return checkDate;
+
+
+
+	public String getDescription() {
+		return description;
 	}
-	public void setCheckDate(LocalDate checkDate) {
-		this.checkDate = checkDate;
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getDbaCode() {
+
+
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+
+
+
+	public int getDbaCode() {
 		return dbaCode;
 	}
-	public void setDbaCode(String dbaCode) {
+
+
+
+	public void setDbaCode(int dbaCode) {
 		this.dbaCode = dbaCode;
 	}
 
-	public String getCurrentAmount() {
+
+
+	public int getHours() {
+		return hours;
+	}
+
+
+
+	public void setHours(int hours) {
+		this.hours = hours;
+	}
+
+
+
+	public float getCurrentAmount() {
 		return currentAmount;
 	}
-	public void setCurrentAmount(String currentAmount) {
+
+
+
+	public void setCurrentAmount(float currentAmount) {
 		this.currentAmount = currentAmount;
 	}
-	public String getYtdAmount() {
+
+
+
+	public float getYtdAmount() {
 		return ytdAmount;
 	}
-	public void setYtdAmount(String ytdAmount) {
+
+
+
+	public void setYtdAmount(float ytdAmount) {
 		this.ytdAmount = ytdAmount;
 	}
+
+
+
+	public LocalDate getPayPeriodEndDate() {
+		return payPeriodEndDate;
+	}
+
+
+
+	public void setPayPeriodEndDate(LocalDate payPeriodEndDate) {
+		this.payPeriodEndDate = payPeriodEndDate;
+	}
+
+
+
+	public LocalDate getCheckDate() {
+		return checkDate;
+	}
+
+
+
+	public void setCheckDate(LocalDate checkDate) {
+		this.checkDate = checkDate;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Paystub [currentAmount=" + currentAmount + ", description=" + description + ", payPeriodEndDate="
-				+ payPeriodEndDate + "]";
+		return "Paystub [currentAmount=" + currentAmount + ", description=" + description +", dbaCode=" + dbaCode +", hours=\" + hours +]"; 
 	}
 
 

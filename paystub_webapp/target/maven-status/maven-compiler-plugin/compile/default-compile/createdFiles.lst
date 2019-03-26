@@ -9,6 +9,7 @@ com\elrancho\paystubwebapp\service\PaystubServiceImpl.class
 com\elrancho\paystubwebapp\service\EmployeeService.class
 com\elrancho\paystubwebapp\dao\EmployeeRepository.class
 com\elrancho\paystubwebapp\controller\PaystubController.class
+com\elrancho\paystubwebapp\entity\LocalDateAttributeConverter.class
 com\elrancho\paystubwebapp\dao\UsersRepository.class
 com\elrancho\paystubwebapp\entity\Employee.class
 com\elrancho\paystubwebapp\entity\PaystubId.class

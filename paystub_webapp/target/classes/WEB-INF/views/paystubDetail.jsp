@@ -1,7 +1,9 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+	<%@ page isELIgnored="false" %>
     <title>Paystub Summary</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,8 +56,7 @@
        		font-size:15px;
        }
 
-        .latestPaycheckNetPayLabel,
-        .latestPaycheckNetPayNumber {
+        .PaycheckLabel {
             font-weight: bold;
             font-size:15px;
         }
@@ -115,39 +116,43 @@
     </nav>
 
     <div class="container">
-        <div class="jumbotron" style="height: 100%">
-            <h3>Earnings</h3>
-           
+        <div class="jumbotron" style="height: 100%">  
             <div id="paycheckAmount" class="pay_div">
+            	<p class="PaycheckLabel">Earnings</p>
                 <table class="table table-hover">
                     <tbody>
-
-
-                        <tr>
-                            <td class="latestPaycheckLabel">Gross Pay</td>
-                            <td class="latestPaycheckNumber">$100.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Net Pay</td>
-                            <td class="latestPaycheckNumber">$100.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Overtime 1.5</td>
-                            <td class="latestPaycheckNumber">$5.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Relocation</td>
-                            <td class="latestPaycheckNumber">$16.65</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckLabel">Work Injury</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
-                        </tr>
-                        <tr>
-                            <td class="latestPaycheckNetPayLabel">Net Pay</td>
-                            <td class="latestPaycheckNetPayNumber">$68.35</td>
-                        </tr>
-
+                    	<c:if test="${not empty earnings}">
+                    		<c:forEach var="earning" items="${earnings}">
+                    			<tr>
+		                        	<c:forEach var="earningAmt" items="${earningsAmt}">
+		                            	<td class="latestPaycheckLabel">${earning}</td>
+		                            	<td class="latestPaycheckNumber">${earningAmt}</td>
+		                             </c:forEach>
+		                        </tr>
+	                        </c:forEach>
+	                       
+	                     </c:if>
+                     </tbody>
+                </table>
+                <p class="PaycheckLabel">Taxes & Deductions</p>
+                
+                <table class="table table-hover">
+                    <tbody>
+                    	<c:if test="${not empty deductions}">
+                    		
+                    			<tr>
+                    				<c:forEach var="deduction" items="${deductions}">
+		                            	<td class="latestPaycheckLabel"> ${deduction}</td>
+		                    		</c:forEach>
+	
+		                            <c:forEach var="deductionAmt" items="${deductionsAmt}">
+		                            	<td class="latestPaycheckNumber">${deductionAmt}</td>
+		                             </c:forEach>
+		                        </tr>
+		                            
+		                               
+	                     </c:if>
+          
                     </tbody>
                 </table>
             </div>

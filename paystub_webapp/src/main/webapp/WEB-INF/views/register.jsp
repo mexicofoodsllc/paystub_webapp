@@ -19,13 +19,7 @@
   
     <form action="/" method="post">
     <div class="form-group">
-     First Name<input type="text" name="fname" class="form-control" placeholder="Fist Name" required/>
-    </div>
-    <div class="form-group">
-     Last Name<input type="text" name="lname" class="form-control" placeholder="Last Name" required/>
-    </div>
-    <div class="form-group">
-     Employee ID<input type="text" name="lname" class="form-control" placeholder="Last Name" required/>
+     Employee ID<input type="text" name="empid" class="form-control" placeholder="Employee ID" required/>
     </div>
     <div class="form-group">
      Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>

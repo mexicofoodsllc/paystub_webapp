@@ -6,9 +6,16 @@
 
 	<!-- Static content -->
 	<link rel="stylesheet" href="/resources/css/style.css">
-	<script type="text/javascript" src="/resources/js/app.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
 	
 	<title>Reset Password</title>
+	<script>
+	$( function() {
+	    $( "#dob_picker" ).datepicker();
+	  } );
+	
+	</script>
 </head>
 
 <body>
@@ -20,7 +27,7 @@
   
     <form action="/" method="post">
 	    <div class="form-group">
-	     	Date of Birth(mm/dd/yyyy)<input type="text" name="dob" class="form-control" placeholder="Date of Birth" required/>
+	     	Date of Birth(mm/dd/yyyy)<input type="text" id="dob_picker" name="dob" class="form-control" placeholder="Date of Birth" required/>
 	    </div>
     	<div class="form-group">
      		Last 4 digits of SSN<input type="text" name="ssn" maxLength="4" class="form-control" placeholder="Last 4 digits of SSN" required/>

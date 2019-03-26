@@ -27,7 +27,8 @@
     			margin: 50px;
    				color: white;
     			border: #eee;
-    			padding: 23px;
+    			padding: 13px;
+    			font-size: 15px;
         }
         .pay_div {
             color: #777;
@@ -48,11 +49,14 @@
             opacity: 0.6 !important;
         }
 
-       
+       .latestPaycheckLabel,
+       .latestPaycheckNumber {
+       		font-size:15px;
+       }
 
-        .latestPaycheckNetPayLabel,
-        .latestPaycheckNetPayNumber {
+        .PaycheckLabel {
             font-weight: bold;
+            font-size:15px;
         }
 
        
@@ -61,14 +65,14 @@
         /* On screens that are 900px or less, set the background color to olive */
         @media screen and (max-width: 900px) {
             .pay_div {
-                font-size: 18px;
+                font-size: 15px;
             }
         }
 
          /* On screens that are 600px or less, set the background color to olive */
          @media screen and (max-width: 600px) {
             .pay_div {
-                font-size: 15px;
+                font-size: 13px;
             }
            
         }
@@ -110,38 +114,44 @@
     </nav>
 
     <div class="container">
-        <div class="jumbotron" style="height: 100%">
-            <h3>View your Paystub details</h3>
-           
+        <div class="jumbotron" style="height: 100%">  
             <div id="paycheckAmount" class="pay_div">
+            	<p class="PaycheckLabel">Earnings</p>
                 <table class="table table-hover">
                     <tbody>
-
-
                         <tr>
-                            <td class="latestPaycheckLabel">Total Hours</td>
-                            <td class="latestPaycheckNumber">10.00</td>
+                            <td class="latestPaycheckLabel">Gross Pay</td>
+                            <td class="latestPaycheckNumber">$${gross}</td>
+                        </tr>
+                     </tbody>
+                </table>
+                <p class="PaycheckLabel">Taxes & Deductions</p>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td class="latestPaycheckLabel">Federal Income Tax</td>
+                            <td class="latestPaycheckNumber">$${fed_inc_tax}</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">Total Earnings</td>
-                            <td class="latestPaycheckNumber">$100.00</td>
+                            <td class="latestPaycheckLabel">Federal FICA Withheld</td>
+                            <td class="latestPaycheckNumber">$${fed_fca_wthld}</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">Pre-Tax Deductions</td>
-                            <td class="latestPaycheckNumber">$5.00</td>
+                            <td class="latestPaycheckLabel">Federal Medicare Withheld</td>
+                            <td class="latestPaycheckNumber">$${fed_med_wthld}</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">Taxes</td>
-                            <td class="latestPaycheckNumber">$16.65</td>
+                            <td class="latestPaycheckLabel">CorePlan Ins</td>
+                            <td class="latestPaycheckNumber">$${coreplan_ins}</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckLabel">After-Tax Adjustments</td>
-                            <td class="latestPaycheckNumber">$10.00</td>
+                            <td class="latestPaycheckLabel">Den High All</td>
+                            <td class="latestPaycheckNumber">$${den_high_all}</td>
                         </tr>
                         <tr>
-                            <td class="latestPaycheckNetPayLabel">Net Pay</td>
-                            <td class="latestPaycheckNetPayNumber">$68.35</td>
-                        </tr>
+                            <td class="latestPaycheckLabel">Vision Plan</td>
+                            <td class="latestPaycheckNumber">$${vision_plan }</td>
+                        </tr>           
 
                     </tbody>
                 </table>

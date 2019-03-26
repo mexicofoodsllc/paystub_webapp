@@ -22,6 +22,12 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
 	
+	$(document).ready(function(){
+		$('.table-row-hide').click(function() {
+		  $(".table-row-hide").show();
+		  $(this).hide();
+		});
+	});
 	/*$(document).ready(function(){
 		$( "table" ).on( "click", "tr", function() {
 			location.href = "http://ec2-3-90-133-23.compute-1.amazonaws.com:8080/paystub_webapp/paystubDetail.jsp";
@@ -40,25 +46,29 @@
         
 		.calenderdiv_style{
 			width: 40%;
+			color: #777;
+            font: 15px "HelveticaNeue-Roman", sans-serif;
 		}
 
-        .pay_header{
-        	font-weight:bold;
-        }
         
-        .paystub_btn{
+		 .paystub_btn{
         	    background-color: #ba150f;
     			margin: 50px;
    				color: white;
     			border: #eee;
-    			padding: 23px;
+    			padding: 13px;
+    			font-size: 15px;
         }
+        
 
         .pay_div{
         	    float: right;
         	    position: relative;
         	    bottom: 500px;
         	    right: 170px;
+        	    color: #777;
+            	font: 15px "HelveticaNeue-Roman", sans-serif;
+            
         }
 		
 	   .pay_span{
@@ -79,9 +89,9 @@
     			
         }
         
-        .table-row{
-			cursor: pointer;
-		
+        .table-row-hide{
+			/*cursor: pointer;
+			display:none;*/
 		}
         
         
@@ -153,9 +163,6 @@
 
     <div class="container">
         <div class="jumbotron" style="height: 600px">
-        	<div>
-           	 <h3>Welcome ${username},</h3>
-           	</div>
             
             <div class="calenderdiv_style">
 				<form action="fetch_paystub" method="post">
@@ -180,16 +187,14 @@
 				    	<th>PAY DATE</th>
      					<th>PAY PERIOD</th>
      					<th>GROSS PAY</th>
-     					<th>NET PAY</th>
 				    </tr>
 				  </thead>
 				  <tbody>
 					    
-					  <tr class="table-row">
+					  <tr class="table-row-hide">
 						<td class="latestPaycheckLabel">${datepicker2}</td>
 						<td class="latestPaycheckLabel">${datepicker1} - ${datepicker2}</td>
-						<td class="latestPaycheckNumber">${gross}</td>
-						 <td class="latestPaycheckNumber">${net}</td> 
+						<td class="latestPaycheckNumber">$${gross}</td>
 						 <td><form action="paystubDetail"><input type="submit" value="Paystub Detail" /></form></td>
 					    </tr>
 					   
@@ -201,8 +206,6 @@
         <div class="footer">
             <p>&copy ElRancho Supermercado</p>
         </div>
-    </div>
-
 </body>
 
 </html>

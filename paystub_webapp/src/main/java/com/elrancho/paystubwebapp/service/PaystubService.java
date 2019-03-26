@@ -8,7 +8,9 @@ import com.elrancho.paystubwebapp.entity.Paystub;
 
 public interface PaystubService {
 	
-	public List<Paystub> findBypayPeriodEndDate(LocalDate Date);
-	public long count();
-	//public List<Paystub> findByPayDate(LocalDate Date);
+
+	public List<Float> findCurrentAmount(LocalDate Date);
+	public List<Integer> findDbaCode(LocalDate Date);
+	public List<Integer> findTotalHours(LocalDate Date);
+
 }
