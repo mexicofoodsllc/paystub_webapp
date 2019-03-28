@@ -74,5 +74,20 @@ public class PaystubServiceImpl implements PaystubService {
 		return ps;
 	}
 
+	@Override
+	public Float findTotalYrToPay(LocalDate date) {
+		Float TotalYearToPay = 0.0f;
+		Iterable<Paystub> paystubs = paystubRepository.findAll();
+		for(Paystub paystub: paystubs) {
+			if(date.equals(paystub.getPayPeriodEndDate())) {
+				
+				TotalYearToPay += TotalYearToPay+ paystub.getYtdAmount();
+			}
+		}
+
+		
+		return TotalYearToPay;
+	}
+
 
 }

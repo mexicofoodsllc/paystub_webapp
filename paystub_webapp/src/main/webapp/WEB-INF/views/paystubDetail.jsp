@@ -59,7 +59,7 @@
         }
 
        td:nth-child(2) {
- 			 text-align: left; /* NEW */
+ 			 /*text-align: left; /* NEW */
 		}
        
 
@@ -120,7 +120,7 @@
     <div class="container" style=",background-color:#DAF7A6">
         <div class="jumbotron" style="height: 100% ,background-color:#DAF7A6">  
             <div id="paycheckAmount" class="pay_div">
-            	<p class="PaycheckLabel">Earnings&Deductions</p>
+            	<p class="PaycheckLabel">Earnings</p>
             	
                 <table class="table table-hover"> 
                   <tr>
@@ -130,39 +130,48 @@
     				<th class="PaycheckLabel">Year to Date</th>
  				  </tr>
                     <tbody>
+						 
                     	<c:forEach var="paystub" items="${paystubList}">
-                    		<tr>
-		                      	<td class="latestPaycheckLabel">${paystub.description}</td>
-		                      	<td class="latestPaycheckNumber">${paystub.currentAmount}</td>
-		                      	<td class="latestPaycheckLabel">${paystub.hours}</td>
-		                      	<td class="latestPaycheckNumber">${paystub.ytdAmount}</td> 
-		                	</tr> 
+                    		<c:set var = "hour" scope = "session" value = "${paystub.hours}"/>
+                    		<c:if test="${hour ne 0}">
+	                    		<tr>
+			                      	<td class="latestPaycheckLabel">${paystub.description}</td>
+			                      	<td class="latestPaycheckNumber">$${paystub.currentAmount}</td>
+			                      	<td class="latestPaycheckLabel">${paystub.hours}</td>
+			                      	 <td class="latestPaycheckNumber">$${paystub.ytdAmount}</td> 
+			                	</tr> 
+		                	 </c:if>
 		                 </c:forEach>
                      </tbody>
                 </table>
-               <!--   <p class="PaycheckLabel">Taxes & Deductions</p>
-                
-               <table class="table table-hover">
+                <p class="PaycheckLabel">Taxes&Deduction</p>
+                <table class="table table-hover"> 
+                 <tr>
+    				<th class="PaycheckLabel" style="width: 30%;">Description</th>
+    				<th class="PaycheckLabel" style="width: 39%;">Current</th> 
+    				<th class="PaycheckLabel">Year to Date</th>
+ 				  </tr>
                     <tbody>
-                    	<c:if test="${not empty deductions}">
-                    		<c:forEach var="deduction" items="${deductions}">
-                    			<tr>
-		                            <td class="latestPaycheckLabel"> ${deduction.key}</td>
-		                         
-		                           <td class="latestPaycheckLabel"> ${deduction.value}</td>
-		              
-		                    	  </tr> 
-		                    </c:forEach>    
-	                     </c:if>
-          
-                    </tbody>
-                </table>--> 
-                <p class="PaycheckLabel">Net Pay</p>
+						 
+                    	<c:forEach var="paystub" items="${paystubList}">
+                    		<c:set var = "hour" scope = "session" value = "${paystub.hours}"/>
+                    		<c:if test="${hour eq 0}">
+	                    		<tr>
+			                      	<td class="latestPaycheckLabel">${paystub.description}</td>
+			                      	<td class="latestPaycheckNumber">$${paystub.currentAmount}</td>
+			                      	<td class="latestPaycheckNumber">$${paystub.ytdAmount}</td> 
+			                	</tr> 
+		                	 </c:if>
+		                 </c:forEach>
+                     </tbody>
+                </table>
+                
                 <table class="table table-hover">
                 	<tbody>
                 		<tr>
-                			<td class="latestPaycheckLabel">Net Pay</td>
-                			<td class="latestPaycheckLabel">${NetPay}</td>
+                			<td  class="PaycheckLabel" style="width: 30%;">Net Pay</td>
+                			<td class="latestPaycheckLabel" style="width: 39%;">${NetPay}</td>
+                			<td class="latestPaycheckLabel">${ytoPay}</td>
                 		</tr>
                 	</tbody>
                 

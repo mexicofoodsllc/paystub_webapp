@@ -68,7 +68,7 @@ public class PaystubController {
 	 
 
 	   @GetMapping("/paystubDetail")
-	   public ModelAndView paystubDetail() {
+	   public ModelAndView paystubDetail() { 
 		   
 		   ModelAndView model = new ModelAndView("paystubDetail");
 		   
@@ -90,6 +90,9 @@ public class PaystubController {
 		     
 		   float netPay = psutil.netPayGenerator(datePicker, currentAmount);
 		   model.addObject("NetPay", "$"+netPay); 
+		   
+		   float ytoPay = psimpl.findTotalYrToPay(datePicker);
+		   model.addObject("ytoPay", "$"+ytoPay); 
 		 
 
 		   return model;
