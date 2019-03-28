@@ -109,6 +109,7 @@ public class PaystubUtil {
 		
 		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
 		 List<Integer> hours = psimpl.findTotalHours(saturdayDatepicker2);
+		 System.out.println("hours"+hours);
 		 
 		 for(Integer hour:hours) {
 			 totalHours += hour;
@@ -116,8 +117,9 @@ public class PaystubUtil {
 		return totalHours;
 		
 	}
+
 	
-	/*public List<String> earningTypeListGenerator(LocalDate date, List<Float> curAmount){
+	/*public Map<String, String> earningGenerator(LocalDate date, List<Float> curAmount){
 		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
 		//List of dba type corresponding to the dates chosen by user
 		   List<String> typeList = psutil.dbaTypeGenerator(date);
@@ -126,31 +128,11 @@ public class PaystubUtil {
 		//list of  description- Earning or deduction
 		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
 		  //list to store earnings types
-		   List<String> earningsType = new ArrayList<String>();;
-		 
-		   for(int i=0;i<dbaDesc.size();i++) {
-			   if(dbaDesc.get(i).contains("Earnings")) {
-				   earningsType.add(typeList.get(i));
-			   }
-		   }
-		return earningsType;
-		
-	}*/
-	
-	public Map<String, Float> earningGenerator(LocalDate date, List<Float> curAmount){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		//List of dba type corresponding to the dates chosen by user
-		   List<String> typeList = psutil.dbaTypeGenerator(date);
-		
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
-		//list of  description- Earning or deduction
-		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
-		  //list to store earnings types
-		   Map<String, Float> earnings = new HashMap<String, Float>();;
+		   Map<String, String> earnings = new HashMap<String, String>();;
 		 
 		   for(int i=0;i<typeList.size();i++) {
 			   if(dbaDesc.get(i).contains("Earnings")) {
-				   earnings.put(typeList.get(i), curAmount.get(i));
+				   earnings.put(typeList.get(i), "$"+curAmount.get(i));
 			   }
 		   }
 		return earnings;
@@ -158,7 +140,7 @@ public class PaystubUtil {
 	}
 	
 	
-	public Map<String, Float> deductionGenerator(LocalDate date, List<Float> curAmount){
+	public Map<String, String> deductionGenerator(LocalDate date, List<Float> curAmount){
 		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
 		//List of dba type corresponding to the dates chosen by user
 		   List<String> typeList = psutil.dbaTypeGenerator(date);
@@ -167,73 +149,16 @@ public class PaystubUtil {
 		//list of  description- Earning or deduction
 		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
 		  //list to store earnings types
-		   Map<String, Float> deductions = new HashMap<String, Float>();;
+		   Map<String, String> deductions = new HashMap<String, String>();;
 		 
 		   for(int i=0;i<typeList.size();i++) {
 			   if(dbaDesc.get(i).contains("Deductions")) {
-				   deductions.put(typeList.get(i), curAmount.get(i));
+				   deductions.put(typeList.get(i), "$"+curAmount.get(i));
 			   }
 		   }
 		return deductions;
 		
-	}
-	
-	/*public List<String> deductionTypeListGenerator(LocalDate date, List<Float> curAmount){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		//List of dba type corresponding to the dates chosen by user
-		   List<String> typeList = psutil.dbaTypeGenerator(date);
-		
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
-		//list of  description- Earning or deduction
-		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
-		  //list to store deductions types
-		   List<String> deductionsType = new ArrayList<String>();
-		 
-		   for(int i=0;i<dbaDesc.size();i++) {
-			   if(dbaDesc.get(i).contains("Deductions")) {
-				   deductionsType.add(typeList.get(i));
-			   }
-		   }
-		return deductionsType;
-		
-	}
-	
-	public List<Float> earningAmountListGenerator(LocalDate date, List<Float> curAmount){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
-		//list of  description- Earning or deduction
-		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
-		  //list to store earnings amount
-		   List<Float> earningsAmount = new ArrayList<Float>();;
-		 
-		   for(int i=0;i<dbaDesc.size();i++) {
-			   if(dbaDesc.get(i).contains("Earnings")) {
-				   earningsAmount.add(curAmount.get(i));
-			   }
-		   }
-		return earningsAmount;
-		
-	}
-	
-	public List<Float> deductionAmountListGenerator(LocalDate date, List<Float> curAmount){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
-		//list of  description- Earning or deduction
-		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
-		  //list to store deductions amount
-		   List<Float> deductionAmount = new ArrayList<Float>();;
-		 
-		   for(int i=0;i<dbaDesc.size();i++) {
-			   if(dbaDesc.get(i).contains("Deductions")) {
-				   deductionAmount.add(curAmount.get(i));
-			   }
-		   }
-		return deductionAmount;
-		
 	}*/
 	
-		
 
 }

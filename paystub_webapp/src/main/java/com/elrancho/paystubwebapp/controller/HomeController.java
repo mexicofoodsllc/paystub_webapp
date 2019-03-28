@@ -20,9 +20,9 @@ public class HomeController {
 	   return "register";
    }
    
-   @PostMapping("/pwdmanagement")
+   @PostMapping("/forgotpwd")
    public String resetPassword() {
-	   return "resetpwd";
+	   return "security_question";
    }
    
    @PostMapping("/home")

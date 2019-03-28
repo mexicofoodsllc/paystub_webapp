@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.elrancho.paystubwebapp.entity.Paystub;
+import com.elrancho.paystubwebapp.service.DbaServiceImpl;
+import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
 import com.elrancho.paystubwebapp.util.PaystubUtil;
 
 @Controller
@@ -24,7 +27,10 @@ public class PaystubController {
 	
 	@Autowired
 	PaystubUtil psutil;
-
+	@Autowired
+	PaystubServiceImpl psimpl;
+	@Autowired
+	DbaServiceImpl dbaimpl;
 	
 	@PostMapping("/paystubSummary")
 	   public String paystubSummary() {
@@ -38,8 +44,9 @@ public class PaystubController {
 		 
 		   model.addAttribute("datepicker2", datepicker2);
 		   datePicker = datepicker2;
+		 
 		   
-			 //List of current amounts corresponding to the dates chosen by user
+		   //List of current amounts corresponding to the dates chosen by user
 		   List<Float> currentAmount = psutil.curAmountGenerator(datePicker);
 		   model.addAllAttributes(currentAmount);
 		  
@@ -49,8 +56,8 @@ public class PaystubController {
 		   float netPay = psutil.netPayGenerator(datePicker, currentAmount);
 		   model.addAttribute("NetPay", "$"+netPay);
 		   
-		   List<String> dbaType = psutil.dbaTypeGenerator(datePicker);
-		   model.addAllAttributes(dbaType);
+		  // List<String> dbaType = psutil.dbaTypeGenerator(datePicker);
+		  // model.addAllAttributes(dbaType);
  		   
 		   int hours = psutil.totalHoursGenerator(datePicker);
 		   model.addAttribute("hours", hours);
@@ -63,26 +70,26 @@ public class PaystubController {
 	   @GetMapping("/paystubDetail")
 	   public ModelAndView paystubDetail() {
 		   
-		   List<Float> currentAmount = psutil.curAmountGenerator(datePicker);
 		   ModelAndView model = new ModelAndView("paystubDetail");
-		   //model.addObject("currentAmount",currentAmount);
+		   
+		   List<Paystub> paystubs = psimpl.findPaystubDetails(datePicker);
+		   model.addObject("paystubList",paystubs);
 		  
-		   Map<String, Float> earnings = psutil.earningGenerator(datePicker, currentAmount);
+		   
+		   List<Float> currentAmount = psutil.curAmountGenerator(datePicker);
+		   List<String> dbaDesc = psutil.dbaTypeGenerator(datePicker);
+		   model.addObject("dbaDesc",dbaDesc);
+		   
+		  
+		  /* Map<String, String> earnings = psutil.earningGenerator(datePicker, currentAmount); 
 		   model.addObject("earnings",earnings);
 		 
-		   Map<String, Float> deductions = psutil.deductionGenerator(datePicker, currentAmount);
+		   Map<String, String> deductions = psutil.deductionGenerator(datePicker, currentAmount);
 		   System.out.println("deductions**************"+deductions);
-		   model.addObject("deductions",deductions);
-
-		   
-		  /* List<Float> earningsAmt = psutil.earningAmountListGenerator(datePicker, currentAmount);
-		   model.addObject("earningsAmt",earningsAmt);
-		   
-		   List<Float> deductionsAmt = psutil.deductionAmountListGenerator(datePicker, currentAmount);
-		   model.addObject("deductionsAmt",deductionsAmt);*/
+		   model.addObject("deductions",deductions);*/
 		     
 		   float netPay = psutil.netPayGenerator(datePicker, currentAmount);
-		   model.addObject("NetPay", "$"+netPay);
+		   model.addObject("NetPay", "$"+netPay); 
 		 
 
 		   return model;

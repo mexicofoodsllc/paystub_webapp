@@ -12,7 +12,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
         .navbar-color {
-            background-color: #eee;
             margin-top: 58px;
             padding: 1pc;
             font-size: 20px
@@ -33,16 +32,14 @@
     			font-size: 15px;
         }
         .pay_div {
-            color: #777;
+        	color: #777;
             font: 20px "HelveticaNeue-Roman", sans-serif;
             margin: 50px 0;
         }
 		
-
-        
-         body{
-        background-image:url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/06/36/6856299993ea2f8.jpg")
-        }
+		.jumbotron{
+			background-color:#DAF7A6;
+		}
 		
         .nav>li:hover {
             /* background-color: #b85855; 
@@ -61,6 +58,9 @@
             font-size:15px;
         }
 
+       td:nth-child(2) {
+ 			 text-align: left; /* NEW */
+		}
        
 
 
@@ -81,9 +81,9 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:#DAF7A6">
 	
-    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation">
+    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:#DAF7A6">
         <div class="container">
             <div class="navbar-header">
 				<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="142"/>
@@ -107,53 +107,65 @@
 				</ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                    	<a href="#" style="color:#ba150f;"><span style="color:#ba150f;" class="glyphicon glyphicon-log-out"></span> Logout</a>
-                    </li>
+                   <li style="color:#ba150f;">
+                    	<form action="/"> 
+                    		<input type="submit" value="Logout" class="logout"/>
+        				</form>
+        			</li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="jumbotron" style="height: 100%">  
+    <div class="container" style=",background-color:#DAF7A6">
+        <div class="jumbotron" style="height: 100% ,background-color:#DAF7A6">  
             <div id="paycheckAmount" class="pay_div">
-            	<p class="PaycheckLabel">Earnings</p>
-                <table class="table table-hover">
+            	<p class="PaycheckLabel">Earnings&Deductions</p>
+            	
+                <table class="table table-hover"> 
+                  <tr>
+    				<th class="PaycheckLabel">Description</th>
+    				<th class="PaycheckLabel">Current</th> 
+   					<th class="PaycheckLabel">Hours</th>
+    				<th class="PaycheckLabel">Year to Date</th>
+ 				  </tr>
                     <tbody>
-                    	<c:if test="${not empty earnings}">
-                    		<c:forEach var="earning" items="${earnings}">
-                    			<tr>
-		                        	<c:forEach var="earningAmt" items="${earningsAmt}">
-		                            	<td class="latestPaycheckLabel">${earning}</td>
-		                            	<td class="latestPaycheckNumber">${earningAmt}</td>
-		                             </c:forEach>
-		                        </tr>
-	                        </c:forEach>
-	                       
-	                     </c:if>
+                    	<c:forEach var="paystub" items="${paystubList}">
+                    		<tr>
+		                      	<td class="latestPaycheckLabel">${paystub.description}</td>
+		                      	<td class="latestPaycheckNumber">${paystub.currentAmount}</td>
+		                      	<td class="latestPaycheckLabel">${paystub.hours}</td>
+		                      	<td class="latestPaycheckNumber">${paystub.ytdAmount}</td> 
+		                	</tr> 
+		                 </c:forEach>
                      </tbody>
                 </table>
-                <p class="PaycheckLabel">Taxes & Deductions</p>
+               <!--   <p class="PaycheckLabel">Taxes & Deductions</p>
                 
-                <table class="table table-hover">
+               <table class="table table-hover">
                     <tbody>
                     	<c:if test="${not empty deductions}">
-                    		
+                    		<c:forEach var="deduction" items="${deductions}">
                     			<tr>
-                    				<c:forEach var="deduction" items="${deductions}">
-		                            	<td class="latestPaycheckLabel"> ${deduction}</td>
-		                    		</c:forEach>
-	
-		                            <c:forEach var="deductionAmt" items="${deductionsAmt}">
-		                            	<td class="latestPaycheckNumber">${deductionAmt}</td>
-		                             </c:forEach>
-		                        </tr>
-		                            
-		                               
+		                            <td class="latestPaycheckLabel"> ${deduction.key}</td>
+		                         
+		                           <td class="latestPaycheckLabel"> ${deduction.value}</td>
+		              
+		                    	  </tr> 
+		                    </c:forEach>    
 	                     </c:if>
           
                     </tbody>
+                </table>--> 
+                <p class="PaycheckLabel">Net Pay</p>
+                <table class="table table-hover">
+                	<tbody>
+                		<tr>
+                			<td class="latestPaycheckLabel">Net Pay</td>
+                			<td class="latestPaycheckLabel">${NetPay}</td>
+                		</tr>
+                	</tbody>
+                
                 </table>
             </div>
             <a href="#" class="btn btn-success btn-lg">

@@ -187,6 +187,11 @@ public class Employee {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", password=" + password + ", ssn=" + ssn + ", status=" + status
+				+ ", username=" + username + "]";
+	}
 
 	
 }

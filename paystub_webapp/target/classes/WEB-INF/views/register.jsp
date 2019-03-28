@@ -7,36 +7,43 @@
 <!-- Static content -->
 <link rel="stylesheet" href="/resources/css/style.css">
 <script type="text/javascript" src="/resources/js/app.js"></script>
+<style>
+        body{
+         background-color:#DAF7A6
+        }
+        
+        .regstyle{
+            width: 400px !important;
+    		margin: auto;
+    	    margin-top: 150px; 
+    	}
+</style>
 
 <title>Employee Registration</title>
 </head>
-<body>
+<body style="background-color:#DAF7A6">
    <div class="container">
    
   	<h2 style="text-align:center"><strong>Register to View, Download and Print your PayStub</strong></h2>
   	
-  <div class="jumbotron">
+  <div class="jumbotron regstyle" style="background-color:#DAF7A6">
   
-    <form action="/" method="post">
-    <div class="form-group">
-     Employee ID<input type="text" name="empid" class="form-control" placeholder="Employee ID" required/>
-    </div>
-    <div class="form-group">
-     Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
-     </div>
-     <div class="form-group">
-     Confirm Password  <input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
-     </div>
-           <div class="form-group"> 
-              <input type="submit" value="Register" class="btn btn-primary btn-block"/>
-           </div>
+    <form action="/regmanagement" method="post">
+	    <div class="form-group">
+	     Employee ID<input type="text" name="empid" class="form-control" placeholder="Employee ID" required/>
+	    </div>
+	    
+	    <div class="form-group"> 
+	         <input type="submit" value="Next" class="btn btn-primary btn-block"/>
+	     </div>
   
    </form>
   </div> 
-</div> 
-  <div class="footer">
+    <div class="footer">
    <p>&copy ElRancho Supermercado</p>
   </div>
+</div> 
+
 
  <script src="https://chancejs.com/chance.min.js"></script>
     <!-- Latest compiled and minified CSS -->

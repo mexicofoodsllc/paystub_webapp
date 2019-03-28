@@ -101,10 +101,6 @@
 		
 		  }
         
-        
-         body{
-        background-image:url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/06/36/6856299993ea2f8.jpg")
-        }
 
         .nav>li:hover {
             /* background-color: #b85855; 
@@ -141,8 +137,8 @@
     </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation">
+<body style="background-color:#DAF7A6">
+    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:#DAF7A6">
         <div class="container">
             <div class="navbar-header">
             	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="142"/>
@@ -173,7 +169,7 @@
     
 
     <div class="container">
-        <div class="jumbotron" style="height: 600px">
+        <div class="jumbotron" style="background-color:#DAF7A6">
             
             <div class="calenderdiv_style">
 				<form action="fetch_paystub" method="post">
@@ -210,10 +206,11 @@
 				  </table>
             </div>
            </div>
+           <div class="footer">
+            	<p>&copy ElRancho Supermercado</p>
+           </div>
         </div>
-        <div class="footer">
-            <p>&copy ElRancho Supermercado</p>
-        </div>
+
 </body>
 
 </html>

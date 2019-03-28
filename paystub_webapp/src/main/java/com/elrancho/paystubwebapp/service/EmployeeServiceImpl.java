@@ -1,31 +1,43 @@
 package com.elrancho.paystubwebapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.elrancho.paystubwebapp.dao.EmployeeRepository;
 import com.elrancho.paystubwebapp.entity.Employee;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService{
 	
-	private EmployeeRepository employeeRepository;
-	
-	//constructor injection for EmployeeRepository
 	@Autowired
-	public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
-		employeeRepository = theEmployeeRepository;
-	}
-
-	@Override
-	public Employee findById(int theId) {
-		Employee theEmployee = employeeRepository.findOne(theId);
+	EmployeeRepository employeeRepository;
+	
+	public boolean activeEmployeeCheck(int empid) {
 		
-		return theEmployee;
+		boolean isActive=true;
+		Iterable<Employee> emp = employeeRepository.findAll();
+		
+		for(Employee e: emp) {
+			if(e.getEmployeeId()==empid) {
+				isActive=true;
+			}
+			else
+				isActive=false;
+		}
+		return isActive;
 	}
-
-	@Override
-	public void save(Employee theEmployee) {
-		// TODO Auto-generated method stub
-		employeeRepository.save(theEmployee);
+	
+	public String generateUserName(int empid) {
+		String userName=null;
+		String fName=null,lName=null;
+		Iterable<Employee> emp = employeeRepository.findAll();
+		for(Employee e: emp) {
+			if(e.getEmployeeId()==empid) {
+				 fName = e.getFirstName();
+				 lName = e.getLastName();
+			}
+				userName=fName+lName.charAt(0);
+		}
+		return userName;
 	}
-
 }

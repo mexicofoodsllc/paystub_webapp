@@ -2,7 +2,7 @@ package com.elrancho.paystubwebapp.entity;
 
 
 import java.time.LocalDate;
-import java.util.Date;
+
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -135,7 +135,7 @@ public class Paystub {
 
 	@Override
 	public String toString() {
-		return "Paystub [currentAmount=" + currentAmount + ", description=" + description +", dbaCode=" + dbaCode +", hours=\" + hours +]"; 
+		return "Paystub [currentAmount=" + currentAmount + ", description=" + description +", dbaCode=" + dbaCode +", hours=" + hours +"ytdAmount=" + ytdAmount + "]"; 
 	}
 
 

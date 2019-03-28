@@ -6,11 +6,9 @@ import com.elrancho.paystubwebapp.entity.Employee;
 
 public interface EmployeeService {
 
+	public boolean activeEmployeeCheck(int empid);
+	public String generateUserName(int empid);
 	
-	
-	public Employee findById(int theId);
-	
-	public void save(Employee theEmployee);
 	
 	
 }

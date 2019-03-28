@@ -12,5 +12,7 @@ public interface PaystubService {
 	public List<Float> findCurrentAmount(LocalDate Date);
 	public List<Integer> findDbaCode(LocalDate Date);
 	public List<Integer> findTotalHours(LocalDate Date);
+	
+	public List<Paystub> findPaystubDetails(LocalDate Date);
 
 }

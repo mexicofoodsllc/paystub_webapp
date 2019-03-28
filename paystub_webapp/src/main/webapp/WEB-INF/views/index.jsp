@@ -22,10 +22,11 @@
         p{
         font-size:15px;
         }
-        body{
-        background-image:url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/06/36/6856299993ea2f8.jpg")
-        }
-        
+        .form-control{
+            width: 50% !important;
+            }
+
+	
          /* On screens that are 900px or less, set set the jumbotron width*/
         @media screen and (max-width: 900px) {
             .jumbotron {
@@ -40,17 +41,15 @@
 	</style>
 </head>
 
-<body>
+<body style="background-color:#DAF7A6">
    <div class="container">
 
   	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="200"/>
-  <div class="jumbotron margin">
+  <div class="jumbotron margin" style="background-color:#DAF7A6">
   
     <form action="home" method="post">
     	<p>Employee Login<p>
-	    <div class="form-group">
-	     	<input type="text" name="username" class="form-control" placeholder="Username" required/>
-	    </div>
+
     	<div class="form-group">
      		<input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
         </div>
@@ -65,7 +64,7 @@
 	  			<input type="submit"class="btn btn-primary btn-default button_style" value="Register"/>
 	  		</div>
 	  	</form>
-	  	<form action="/pwdmanagement" method="post">
+	  	<form action="/forgotpwd" method="post">
 	  		<div class="form-group">
 	  			<input type="submit"class="btn btn-primary btn-danger" value="Forgot Password?"/>
 	  		</div>
