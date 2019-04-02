@@ -1,11 +1,11 @@
 package com.elrancho.paystubwebapp.service;
 
-import java.time.LocalDate;
-
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.elrancho.paystubwebapp.dao.UsersRepository;
+import com.elrancho.paystubwebapp.entity.Employee;
 import com.elrancho.paystubwebapp.entity.Users;
 
 
@@ -15,18 +15,39 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UsersRepository usersRepository;
 	@Autowired
-	EmployeeServiceImpl esimpl;
-	Users user;
+	EmployeeServiceImpl esimpl;	
 	
-	public void registerUser(int employeeId,int ssn,LocalDate dob,String pwd) {
-		//System.out.println("Username"+esimpl.generateUserName(employeeId));
-		 // user.setUsername(esimpl.generateUserName(employeeId));
-		  user.setEmployeeId(employeeId);
-		  user.setDob(dob);
-		  user.setSsn(ssn);
-		  user.setPassword(pwd);
-		  usersRepository.save(user);
+	@Override
+	public String hashPassword(String plainTextPassword) {
+		return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+	
 	}
+
+	@Override
+	public void registerUser(Users user) {
+		
+		usersRepository.save(user);
+		
+	}
+
+	@Override
+	public boolean activeUserCheck(int empid) {
+		boolean isActive=true;
+		Iterable<Users> userList = usersRepository.findAll();
+		for(Users u:userList) {
+			if(u.getEmployeeId()==empid) {
+				isActive=true;
+			}
+			else
+				isActive=false;
+		}
+	
+		return isActive;
+	}
+
+
+	
+
 	
 
 	

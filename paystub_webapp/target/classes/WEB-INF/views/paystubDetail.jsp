@@ -12,11 +12,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
         .navbar-color {
-            margin-top: 58px;
+            margin-top: 20px;
             padding: 1pc;
             font-size: 20px
         }
-
+		
+		.navbar-inverse {
+			border-color:white;
+		}
         h3 {
             font-size: 20px;
             color: #777;
@@ -34,12 +37,8 @@
         .pay_div {
         	color: #777;
             font: 20px "HelveticaNeue-Roman", sans-serif;
-            margin: 50px 0;
+            margin: -16px 0;
         }
-		
-		.jumbotron{
-			background-color:#DAF7A6;
-		}
 		
         .nav>li:hover {
             /* background-color: #b85855; 
@@ -81,9 +80,9 @@
     </style>
 </head>
 
-<body style="background-color:#DAF7A6">
+<body>
 	
-    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:#DAF7A6">
+    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:white">
         <div class="container">
             <div class="navbar-header">
 				<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="142"/>
@@ -108,7 +107,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                    <li style="color:#ba150f;">
-                    	<form action="/"> 
+                    	<form action="/login"> 
                     		<input type="submit" value="Logout" class="logout"/>
         				</form>
         			</li>
@@ -117,8 +116,8 @@
         </div>
     </nav>
 
-    <div class="container" style=",background-color:#DAF7A6">
-        <div class="jumbotron" style="height: 100% ,background-color:#DAF7A6">  
+    <div class="container" style=",background-color:white">
+        <div class="jumbotron" style="height: 100%">  
             <div id="paycheckAmount" class="pay_div">
             	<p class="PaycheckLabel">Earnings</p>
             	
@@ -169,9 +168,8 @@
                 <table class="table table-hover">
                 	<tbody>
                 		<tr>
-                			<td  class="PaycheckLabel" style="width: 30%;">Net Pay</td>
-                			<td class="latestPaycheckLabel" style="width: 39%;">${NetPay}</td>
-                			<td class="latestPaycheckLabel">${ytoPay}</td>
+                			<td  class="PaycheckLabel">Net Pay</td>
+                			<td class="latestPaycheckLabel" style="width: 70%;">${NetPay}</td>
                 		</tr>
                 	</tbody>
                 

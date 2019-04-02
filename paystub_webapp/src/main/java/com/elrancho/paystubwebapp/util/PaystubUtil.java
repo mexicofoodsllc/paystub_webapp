@@ -2,13 +2,17 @@ package com.elrancho.paystubwebapp.util;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.elrancho.paystubwebapp.entity.Paystub;
 import com.elrancho.paystubwebapp.service.DbaServiceImpl;
 import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
 
@@ -53,14 +57,28 @@ public class PaystubUtil {
 			return saturdayDatepicker2;
 			
 		}
-	
+	//method to check if the user entered date is in the database
+	public boolean validDateCheck(LocalDate datePicker) {
+		
+		LocalDate saturdayDatepicker2 = ps.dayConverter(datePicker);
+		
+		boolean isDateValid=true;
+		Set<LocalDate> dateSet = ps.getDates();
+		if(dateSet.contains(saturdayDatepicker2)) {
+			isDateValid=true;
+		}
+		else
+			isDateValid=false;
+		
+		return isDateValid;
+		
+	}
 	//list of amounts in $ corresponding to selected date
 	public List<Float> curAmountGenerator(LocalDate datePicker){
 		LocalDate saturdayDatepicker2 = ps.dayConverter(datePicker);
-		
 		 List<Float> currentAmount = psimpl.findCurrentAmount(saturdayDatepicker2);
 		return currentAmount;
-		
+	
 	}
 	
 	//list of dba types corresponding to selected date
@@ -79,12 +97,19 @@ public class PaystubUtil {
 		
 	}
 	
-	public float netPayGenerator(LocalDate date, List<Float> curAmount) {
+	public float netPayGenerator(LocalDate date) {
 		
-		//initializing netPay to grossPay
-		float netPay=curAmount.get(0);
 		
 		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
+		float netPay = 0;
+		
+		List<Float> curAmount = psimpl.findCurrentAmount(saturdayDatepicker2);
+		//initializing netPay to grossPay
+		 if(psutil.validDateCheck(date)==true) {
+				netPay=curAmount.get(0);
+				System.out.println("in psutil"+netPay);
+		 }
+
 		 //List of dba codes corresponding to the dates chosen by user
 		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
 		   
@@ -109,7 +134,6 @@ public class PaystubUtil {
 		
 		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
 		 List<Integer> hours = psimpl.findTotalHours(saturdayDatepicker2);
-		 System.out.println("hours"+hours);
 		 
 		 for(Integer hour:hours) {
 			 totalHours += hour;
@@ -118,7 +142,26 @@ public class PaystubUtil {
 		
 	}
 
+	public Set<LocalDate> getDates() {
+		Set<LocalDate> dateSet = new TreeSet<LocalDate>();
+		List<Paystub> paystubList = psimpl.getAllPaystubs();
+		for(Paystub p:paystubList) {
+			dateSet.add(p.getPayPeriodEndDate());
+		}
+		
+		return dateSet;
+	}
+	
 
+
+	public Float grossPayGenerator(LocalDate datePicker){
+		LocalDate saturdayDatepicker2 = ps.dayConverter(datePicker);
+		
+		 List<Float> currentAmount = psimpl.findCurrentAmount(saturdayDatepicker2);
+		 float grossPay = currentAmount.get(0);
+		 return grossPay;
+		
+	}
 	
 	/*public Map<String, String> earningGenerator(LocalDate date, List<Float> curAmount){
 		LocalDate saturdayDatepicker2 = ps.dayConverter(date);

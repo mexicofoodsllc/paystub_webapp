@@ -28,6 +28,8 @@ public class PaystubServiceImpl implements PaystubService {
 			if(date.equals(paystub.getPayPeriodEndDate())) {
 				curAmount.add(paystub.getCurrentAmount());
 			}
+			//else
+				//curAmount.add(0.0f);
 						
 		}
 		return curAmount;
@@ -87,6 +89,12 @@ public class PaystubServiceImpl implements PaystubService {
 
 		
 		return TotalYearToPay;
+	}
+
+	@Override
+	public List<Paystub> getAllPaystubs() {
+		List<Paystub> paystubs = paystubRepository.findAll();
+		return paystubs;
 	}
 
 

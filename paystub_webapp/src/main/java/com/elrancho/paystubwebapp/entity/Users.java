@@ -2,10 +2,12 @@ package com.elrancho.paystubwebapp.entity;
 
 import java.time.LocalDate;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name="Users")
@@ -13,12 +15,22 @@ public class Users {
 
 	@NotNull
 	@Id
-	String username;
-	int employeeId, ssn;
+	int employeeId;
+	int ssn;
 	
 	String password;
 	LocalDate dob;
 	
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Users(int employeeId, int ssn, String password, LocalDate dob) {
+		this.employeeId = employeeId;
+		this.ssn = ssn;
+		this.password = password;
+		this.dob = dob;
+	}
 	public int getSsn() {
 		return ssn;
 	}
@@ -38,12 +50,7 @@ public class Users {
 	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -52,7 +59,7 @@ public class Users {
 	}
 	@Override
 	public String toString() {
-		return "Users [username=" + username + ", employeeId=" + employeeId + ", ssn=" + ssn + ", password=" + password
+		return "Users [employeeId=" + employeeId + ", ssn=" + ssn + ", password=" + password
 				+ ", dob=" + dob + "]";
 	} 
 }

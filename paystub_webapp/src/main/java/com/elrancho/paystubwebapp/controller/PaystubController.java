@@ -44,23 +44,32 @@ public class PaystubController {
 		 
 		   model.addAttribute("datepicker2", datepicker2);
 		   datePicker = datepicker2;
-		 
 		   
 		   //List of current amounts corresponding to the dates chosen by user
 		   List<Float> currentAmount = psutil.curAmountGenerator(datePicker);
 		   model.addAllAttributes(currentAmount);
 		  
-		   float grossPay=currentAmount.get(0);
-		   model.addAttribute("GrossPay", "$"+grossPay);
+		   if(psutil.validDateCheck(datePicker)==true) {
+			   float grossPay=currentAmount.get(0);
+			   model.addAttribute("grossPay", grossPay);
+			   
+			   float netPay = psutil.netPayGenerator(datePicker);
+			   model.addAttribute("NetPay", "$"+netPay);
+
+	 		   
+			   int hours = psutil.totalHoursGenerator(datePicker);
+			   model.addAttribute("hours", hours);
+		   }
 		   
-		   float netPay = psutil.netPayGenerator(datePicker, currentAmount);
-		   model.addAttribute("NetPay", "$"+netPay);
+		   else if(psutil.validDateCheck(datePicker)==false) {
+			   float grossPay= 0.0f;
+			   model.addAttribute("grossPay", grossPay);
+			   String errorMsg = "There is no payment for the week "+datePicker;
+			   model.addAttribute("errorMsg", errorMsg);
+		   }
 		   
-		  // List<String> dbaType = psutil.dbaTypeGenerator(datePicker);
-		  // model.addAllAttributes(dbaType);
- 		   
-		   int hours = psutil.totalHoursGenerator(datePicker);
-		   model.addAttribute("hours", hours);
+		   
+
 		   
 		   return "paystubSummary";
 		
@@ -80,15 +89,8 @@ public class PaystubController {
 		   List<String> dbaDesc = psutil.dbaTypeGenerator(datePicker);
 		   model.addObject("dbaDesc",dbaDesc);
 		   
-		  
-		  /* Map<String, String> earnings = psutil.earningGenerator(datePicker, currentAmount); 
-		   model.addObject("earnings",earnings);
-		 
-		   Map<String, String> deductions = psutil.deductionGenerator(datePicker, currentAmount);
-		   System.out.println("deductions**************"+deductions);
-		   model.addObject("deductions",deductions);*/
 		     
-		   float netPay = psutil.netPayGenerator(datePicker, currentAmount);
+		   float netPay = psutil.netPayGenerator(datePicker);
 		   model.addObject("NetPay", "$"+netPay); 
 		   
 		   float ytoPay = psimpl.findTotalYrToPay(datePicker);

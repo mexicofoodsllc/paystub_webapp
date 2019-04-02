@@ -15,9 +15,9 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
   	<script>
-	$( function() {
+	/*$( function() {
 	    $( "#datepicker1" ).datepicker();
-	     } );
+	     } );*/
 	$( function() {
 	    $( "#datepicker2" ).datepicker();
 	  } );
@@ -62,10 +62,6 @@
         
 
         .pay_div{
-        	    float: right;
-        	    position: relative;
-        	    bottom: 500px;
-        	    right: 170px;
         	    color: #777;
             	font: 15px "HelveticaNeue-Roman", sans-serif;
             
@@ -89,16 +85,22 @@
     			
         }
         
+        .table {
+   			 width: 60%;
+   		}
+   		
+        th{
+       		width:110px;
+        }
         .table-row-hide{
 			/*cursor: pointer;
 			display:none;*/
 		}
         
+        .logout{
+		
+		  }
         
-        
-         body{
-        background-image:url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/06/36/6856299993ea2f8.jpg")
-        }
 
         .nav>li:hover {
             /* background-color: #b85855; 
@@ -112,6 +114,7 @@
         .latestPaycheckNetPayLabel,
         .latestPaycheckNetPayNumber {
             font-weight: bold;
+            width:110px;
         }
 
        
@@ -134,8 +137,8 @@
     </style>
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation">
+<body style="background-color:#DAF7A6">
+    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:#DAF7A6">
         <div class="container">
             <div class="navbar-header">
             	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="142"/>
@@ -154,7 +157,11 @@
                 <h2><strong>Paystub Home</strong></h2>
                  
             	<ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"  style="color:#ba150f;"><span class="glyphicon glyphicon-log-out"  style="color:#ba150f;"></span> Logout</a></li>
+                    <li style="color:#ba150f;">
+                    	<form action="/"> 
+                    		<input type="submit" value="Logout" class="logout"/>
+        				</form>
+        			</li>
              	</ul>
             </div>
         </div>
@@ -162,22 +169,17 @@
     
 
     <div class="container">
-        <div class="jumbotron" style="height: 600px">
+        <div class="jumbotron" style="background-color:#DAF7A6">
             
             <div class="calenderdiv_style">
 				<form action="fetch_paystub" method="post">
-            		<p id="calenderTitle">View paychecks from:</p>
-	            	<input type="text" id="datepicker1" name="from"/>
-	            	<p>to</p>
+            		<!-- <p id="calenderTitle">View paychecks from:</p>
+	            	<input type="text" id="datepicker1" name="from"/>-->
+	            	<p id="calenderTitle">Choose Date to view Pay stub:</p> 
 	            	<input type="text" id="datepicker2" name="to"/>
 	            	<input type="submit" value="Paystub Summary" class="paystub_btn"/>
 	            </form>
 			</div>
-
-          
-	      </div>
-
-			
 			
            <div id="paycheckAmount" class="pay_div">
             	
@@ -185,27 +187,30 @@
 				  <thead>
 				    <tr>
 				    	<th>PAY DATE</th>
-     					<th>PAY PERIOD</th>
      					<th>GROSS PAY</th>
+     					<th>NET PAY</th>
+     					<th>HOURS</th>
 				    </tr>
 				  </thead>
 				  <tbody>
 					    
 					  <tr class="table-row-hide">
 						<td class="latestPaycheckLabel">${datepicker2}</td>
-						<td class="latestPaycheckLabel">${datepicker1} - ${datepicker2}</td>
-						<td class="latestPaycheckNumber">$${gross}</td>
+						<td class="latestPaycheckNumber">${GrossPay}</td>
+						<td class="latestPaycheckNumber">${NetPay}</td>
+						<td class="latestPaycheckNumber">${hours}</td>
 						 <td><form action="paystubDetail"><input type="submit" value="Paystub Detail" /></form></td>
 					    </tr>
 					   
 				  </tbody>
 				  </table>
             </div>
-           
+           </div>
+           <div class="footer">
+            	<p>&copy ElRancho Supermercado</p>
+           </div>
         </div>
-        <div class="footer">
-            <p>&copy ElRancho Supermercado</p>
-        </div>
+
 </body>
 
 </html>

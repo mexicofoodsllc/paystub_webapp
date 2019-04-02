@@ -1,8 +1,12 @@
 package com.elrancho.paystubwebapp.service;
 
-import java.time.LocalDate;
+
+
+import com.elrancho.paystubwebapp.entity.Users;
 
 public interface UserService {
 
-	public void registerUser(int employeeId,int ssn,LocalDate dob,String pwd);
+	String hashPassword(String plainTextPassword);
+	public void registerUser(Users user);
+	public boolean activeUserCheck(int empid);
 }
