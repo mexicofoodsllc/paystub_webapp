@@ -83,7 +83,7 @@ public class PaystubController {
 		   
 		   List<Paystub> paystubs = psimpl.findPaystubDetails(datePicker);
 		   model.addObject("paystubList",paystubs);
-		  
+
 		   
 		   List<Float> currentAmount = psutil.curAmountGenerator(datePicker);
 		   List<String> dbaDesc = psutil.dbaTypeGenerator(datePicker);

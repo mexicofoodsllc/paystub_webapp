@@ -8,6 +8,10 @@
 	<script type="text/javascript" src="/resources/js/app.js"></script>
 	
 	<title>Employee Login</title>
+	
+	<script type='text/javascript'>
+
+	</script>
 	<style>
 
 		.margin{
@@ -25,9 +29,12 @@
         }
         .form-control{
             width: 50% !important;
-            }
+         }
 
-	
+		.pwdinvalid{
+			font-size:12px !important;
+			color:red;
+		}
          /* On screens that are 900px or less, set set the jumbotron width*/
         @media screen and (max-width: 900px) {
             .jumbotron {
@@ -52,8 +59,10 @@
     	<p>Employee Login<p>
 
     	<div class="form-group">
-     		<input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
+     		<input type="password" name="pwd" minlength="6" class="form-control" placeholder="Password" required/>
+			<p class="pwdinvalid">${errMsg }</p>
         </div>
+
         <div class="form-group"> 
               <input type="submit" value="Login" class="btn btn-primary btn-default button_style"/>
         </div>

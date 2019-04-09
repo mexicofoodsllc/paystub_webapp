@@ -8,13 +8,12 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.elrancho.paystubwebapp.entity.Employee;
 import com.elrancho.paystubwebapp.entity.Paystub;
 import com.elrancho.paystubwebapp.entity.Users;
 import com.elrancho.paystubwebapp.service.EmployeeServiceImpl;
@@ -26,6 +25,7 @@ import com.elrancho.paystubwebapp.util.PaystubUtil;
 public class RegisterController {
 	
 	private int employeeId;
+	private String password;
 	
 	@Autowired
 	EmployeeServiceImpl esimpl;
@@ -35,6 +35,8 @@ public class RegisterController {
 	PaystubServiceImpl psimpl;
 	@Autowired
 	PaystubUtil psutil;
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 
 	  @PostMapping("/regmanagement")
@@ -43,66 +45,92 @@ public class RegisterController {
 		  employeeId=empId;
 
 		 boolean isActiveEmployee= esimpl.activeEmployeeCheck(employeeId);
-		 boolean isActiveUser = usimpl.activeUserCheck(employeeId);
+		 boolean isActiveUser = usimpl.activeUserCheck(employeeId);	 
 
 		 if(isActiveUser==true) {
 			 return "activeUser";
 		 }
 		 
 		 else if(isActiveEmployee==true){
-			 return "security_question";
+			 return "passwordValidation";
 		 }
 		 else 
 			 return "terminatedUser";
 	   }
 	   
-	  @PostMapping("/empRegSucess")
-	  public String paystubHome(@RequestParam("dob") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate dob,
-			  					@RequestParam("ssn") int ssn, @RequestParam("pwd1") String pwd, Model model) {
+	  
+	  @PostMapping("/pwdValid")
+	  public String securityQuestion(@RequestParam("pwd1") String pwd, Model model) {
+	    password = pwd;
+		//checking if the same password is already in the database
+	  		boolean isPwdPresent = usimpl.passwordValidator(password);
+			  
+	  		if(isPwdPresent==true) {
+				  String errMsgPwd = "Please choose another password";
+				  model.addAttribute("errMsgPwd", errMsgPwd);
+				  return "passwordValidation";
+			  }
+	  		else
+	  			return "security_question"; 
 		  
-		  /*password encryption
-		  String encPwd = usimpl.hashPassword(pwd);
-		  System.out.println(encPwd);*/
-		  //setting new user fields
-		  Users user= new Users(employeeId, ssn, pwd, dob);
-		  //registering new user in users table
-		  usimpl.registerUser(user);
+	  }
+	  @PostMapping("/empRegSucess")
+	  public String paystubHome(@RequestParam("dob") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate dob, @RequestParam("ssn") String ssn, Model model) {
+		  
 
-		   List<Paystub> paystubList = psimpl.getAllPaystubs();
-		   model.addAttribute("paystubs", paystubList);
+		  //validating security questions- dob and ssn 4 digits
+			boolean securityQuestionValid = esimpl.securityQuestionCheck(dob, ssn);
+			System.out.println("securityQuestionValid "+securityQuestionValid);
+			  
+
+		  if(securityQuestionValid==false) {
+			  String errMsgSecQuestion = "Please choose your correct date of birth and ssn";
+			  model.addAttribute("errMsgSecQuestion", errMsgSecQuestion);
+			  return "security_question";
+		  }
+		  
+		  else {
+		  
+		  //password encryption
+			  String encodedPassword = bCryptPasswordEncoder.encode(password);
+			  System.out.println("encodedPassword "+encodedPassword);
+
+		  //setting new user fields
+			  Users user= new Users(employeeId, encodedPassword);
+		  //registering new user in users table
+			  usimpl.registerUser(user);
 		   
 		   //set containing unique dates from paystub table
-		   Set<LocalDate> dateSet = psutil.getDates();
-		   model.addAttribute("dateSet",dateSet);
+			  Set<LocalDate> dateSet = psutil.getDates();
+			  model.addAttribute("dateSet",dateSet);
 
 		   //grossPayList has all the grossPays in the table
-		   List<Float> grossPayList = new ArrayList<Float>();
-		   for(LocalDate d:dateSet) {
-			 grossPayList.add(psutil.grossPayGenerator(d));
-			   
-		   }
+			  List<Float> grossPayList = new ArrayList<Float>();
+			  for(LocalDate d:dateSet) {
+				grossPayList.add(psutil.grossPayGenerator(d));
+				   
+			  }
 		   
-		   model.addAttribute("grossPayList",grossPayList);
+			  model.addAttribute("grossPayList",grossPayList);
 		   
-		  List<Float> netPayList = new ArrayList<Float>();
+			  List<Float> netPayList = new ArrayList<Float>();
 		  
-		  for(LocalDate d:dateSet) {
-			   
-			netPayList.add(psutil.netPayGenerator(d));
-			   
-		   }
-		   model.addAttribute("netPayList",netPayList);
+			  for(LocalDate d:dateSet) {
+				   
+				netPayList.add(psutil.netPayGenerator(d));
+				   
+			   }
+			   model.addAttribute("netPayList",netPayList);
 		   
-		   List<Integer> hoursList = new ArrayList<Integer>();
+			   List<Integer> hoursList = new ArrayList<Integer>();
 			  
 			  for(LocalDate d:dateSet) {
 				hoursList.add(psutil.totalHoursGenerator(d));
 				   
 			   }
-			   model.addAttribute("hoursList",hoursList);
-		   
-	       return "paystubSummary";
+			 model.addAttribute("hoursList",hoursList);
+			 return "paystubSummary";  
+		  }
 
-	  }
-	 
+	}
 }

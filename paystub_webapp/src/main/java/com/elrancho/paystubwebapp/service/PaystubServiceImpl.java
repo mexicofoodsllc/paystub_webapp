@@ -66,7 +66,7 @@ public class PaystubServiceImpl implements PaystubService {
 	public List<Paystub> findPaystubDetails(LocalDate Date) {
 		Iterable<Paystub> paystubs = paystubRepository.findAll();
 		List<Paystub> ps= new ArrayList<Paystub>();
-		//selecting the currentAmount corresponding to the dates selected by user and adding it to the list curAmount
+		//filtering the paystub based on payperiod end date
 		for(Paystub paystub: paystubs) {
 			if(Date.equals(paystub.getPayPeriodEndDate())) {
 				ps.add(paystub);

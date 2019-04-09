@@ -1,5 +1,6 @@
 package com.elrancho.paystubwebapp.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,9 +15,9 @@ public class Employee {
 	@Id
 	int employeeId;
 	String password;
-	long ssn;
-	@Temporal(TemporalType.DATE)
-	Date hireDate, terminationDate, birthDate;
+	String ssn;
+	
+	LocalDate hireDate, terminationDate, birthDate;
 	
 	String status;
 	String jobCode, supervisorID, payMethod, hourlyRatee; 
@@ -24,22 +25,22 @@ public class Employee {
 	String state, zipCode, gender, company, businessUnit, badgeNumber, payCategory;
 	String firstName, lastName, username;
 	
-	public Date getHireDate() {
+	public LocalDate getHireDate() {
 		return hireDate;
 	}
-	public void setHireDate(Date hireDate) {
+	public void setHireDate(LocalDate hireDate) {
 		this.hireDate = hireDate;
 	}
-	public Date getTerminationDate() {
+	public LocalDate getTerminationDate() {
 		return terminationDate;
 	}
-	public void setTerminationDate(Date terminationDate) {
+	public void setTerminationDate(LocalDate terminationDate) {
 		this.terminationDate = terminationDate;
 	}
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getJobCode() {
@@ -175,10 +176,10 @@ public class Employee {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public long getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
-	public void setSsn(long ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 	public String getStatus() {
@@ -190,7 +191,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", password=" + password + ", ssn=" + ssn + ", status=" + status
-				+ ", username=" + username + "]";
+				+ ", birthDate=" + birthDate + "]";
 	}
 
 	

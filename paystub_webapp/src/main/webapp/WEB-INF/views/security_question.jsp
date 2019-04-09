@@ -12,7 +12,10 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<style>
-
+		.pwdinvalid{
+			font-size:12px !important;
+			color:red;
+		}
 	</style>
 	<script>
 	$( function() {
@@ -40,7 +43,7 @@
   	<h2 style="text-align:center"><strong>Security Questions</strong></h2>
   	
   <div class="jumbotron">
-  
+  	<h3>This will help to reset your password</h3>
     <form action="/empRegSucess" method="post">
 	    <div class="form-group">
 	     	Date of Birth(mm/dd/yyyy)<input type="text" id="dob_picker" name="dob" class="form-control" placeholder="Date of Birth" required/>
@@ -48,13 +51,7 @@
     	<div class="form-group">
      		Last 4 digits of SSN<input type="text" name="ssn" maxLength="4" class="form-control" placeholder="Last 4 digits of SSN" required/>
         </div>
-        <div class="form-group">
-     		New Password  <input type="password" name="pwd1" id="pwd1" minlength="6" class="form-control" placeholder="New Password" required/>
-        </div>
-        <div class="form-group">
-     		Confirm Password  <input type="password" name="pwd2" id="pwd2" minlength="6" class="form-control" placeholder="Confirm Password" required/>
-     		 <span id='message'></span>
-        </div>
+        <p class="pwdinvalid">${errMsgSecQuestion }</p>
         <div class="form-group"> 
               <input type="submit" value="Login" class="btn btn-primary btn-block"/>
          </div>

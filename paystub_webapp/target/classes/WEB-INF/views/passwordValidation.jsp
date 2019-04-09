@@ -40,20 +40,21 @@
 <body>
    <div class="container">
    
-  	<h2 style="text-align:center"><strong>Security Questions</strong></h2>
+  	<h2 style="text-align:center"><strong>Password</strong></h2>
   	
   <div class="jumbotron">
-  	<h3>This will help to reset your password</h3>
-    <form action="/empRegSucess" method="post">
-	    <div class="form-group">
-	     	Date of Birth(mm/dd/yyyy)<input type="text" id="dob_picker" name="dob" class="form-control" placeholder="Date of Birth" required/>
-	    </div>
-    	<div class="form-group">
-     		Last 4 digits of SSN<input type="text" name="ssn" maxLength="4" class="form-control" placeholder="Last 4 digits of SSN" required/>
+  	<h3>Set up password</h3>
+    <form action="/pwdValid" method="post">
+        <div class="form-group">
+     		New Password  <input type="password" name="pwd1" id="pwd1" minlength="6" class="form-control" placeholder="New Password" required/>
         </div>
-        <p class="pwdinvalid">${errMsgSecQuestion }</p>
+        <div class="form-group">
+     		Confirm Password  <input type="password" name="pwd2" id="pwd2" minlength="6" class="form-control" placeholder="Confirm Password" required/>
+     		 <span id='message'></span>
+     		 <p class="pwdinvalid">${errMsgPwd }</p>
+        </div>
         <div class="form-group"> 
-              <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+              <input type="submit" value="Next" class="btn btn-primary btn-block"/>
          </div>
      </form>
    

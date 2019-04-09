@@ -57,6 +57,12 @@
             font-size:15px;
         }
 
+		tr:hover{
+			background-color:white;
+		}
+		tr:hover td {
+    		background-color: transparent; 
+		}
        td:nth-child(2) {
  			 /*text-align: left; /* NEW */
 		}

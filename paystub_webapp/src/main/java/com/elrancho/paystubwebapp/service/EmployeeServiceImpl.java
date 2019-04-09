@@ -1,6 +1,7 @@
 package com.elrancho.paystubwebapp.service;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 				status = e.getStatus();
 			}
 		}
-		if(status.equalsIgnoreCase("active"))
+		if(status.equalsIgnoreCase("A")) //comparing with active flag "A" from employee table
 				isActive=true;	
 			else
 				isActive=false;
@@ -40,4 +41,21 @@ public class EmployeeServiceImpl implements EmployeeService{
 		 
 		return emp;
 	}
+
+	@Override
+	public boolean securityQuestionCheck(LocalDate dob, String ssn) {
+		boolean isSecurityQuestionTrue= false;
+		List<Employee> emp = employeeRepository.findAll();
+		System.out.println(emp);
+		System.out.println("dob "+dob);
+		for(Employee e: emp) {
+			if((e.getBirthDate().equals(dob))&& (e.getSsn().equals(ssn))){
+					isSecurityQuestionTrue=true;
+				}
+			}
+		return isSecurityQuestionTrue;
+	}
+
+
+
 }

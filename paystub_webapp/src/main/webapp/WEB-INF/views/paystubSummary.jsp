@@ -18,6 +18,7 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
   	<script>
+  	
 	/*$( function() {
 	    $( "#datepicker1" ).datepicker();
 	     } );*/
@@ -25,11 +26,14 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
 
-  /*$(document).ready(function(){
-	     $('#paystubSummary').click(function() {
-	     $('#paySelected').toggle("slide");
+	     $(function(){
+		     $("#paystubSummary").click(function() {
+				if ($("#paySelected").hasClass("hidden")) {
+					$("#totalPaySummary").hide();
+					$("#paySelected").show();
+				};
+		     });
 	     });
-	 });*/
   	</script>
     
     <style>
@@ -122,7 +126,7 @@
        .selectedPaystyle{
        	    border-top: none;
        }
-       #paySelected{
+      .hidden{
        	display:none;
        }
 
@@ -186,11 +190,11 @@
 	            	<input type="text" id="datepicker1" name="from"/>-->
 	            	<p id="calenderTitle">Choose date to view Pay stub details:</p> 
 	            	<input type="text" id="datepicker2" name="to" required/>
-	            	<input type="submit" value="View Paystub Summary" class="paystub_btn" id="paystubSummary"/>
+	            	<input type="submit" value="View Paystub Summary"  class="paystub_btn" id="paystubSummary"/>
 	            </form>
 			</div>
 			
-           <div id="paySummary" class="pay_div">
+           <div id="totalPaySummary" class="pay_div">
             	
                  <table class="table">
 				  <thead>
@@ -204,18 +208,18 @@
 				  <tbody>
 					 <c:forEach var="date" items="${dateSet}"  varStatus="status">
 						  <tr>
-							<td class="latestPaycheckLabel">${date}</td>
+							<td class="latestPaycheckLabel"><a href="paystubDetail.jsp"></a>${date}</td>
 							<td class="latestPaycheckNumber">$${grossPayList[status.index]}</td>
 							<td class="latestPaycheckNumber">$${netPayList[status.index]}</td>
 							<td class="latestPaycheckNumber">${hoursList[status.index]}</td>
-						 </tr>
+						  </tr>
 						</c:forEach>
 
 				  </tbody>
 				  </table>
             </div>
             
-            <div id="paySelected" class="pay_div">
+            <div id="paySelected" class="pay_div hidden">
             	 <table class="table">
 				  <thead>
 				    <tr>

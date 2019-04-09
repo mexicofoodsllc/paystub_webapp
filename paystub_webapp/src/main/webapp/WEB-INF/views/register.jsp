@@ -36,14 +36,6 @@
 			<input type="submit" value="Next" class="btn btn-primary btn-block"/>
 	  	</div>		
 	</form>
-	<!-- <c:forEach var="eid" items="${empList.employeeId}">
-	   		<c:if test="${eid eq empid}">
-
-        	</c:if>
-        	<c:if test="${eid ne empid}">
-        			<div>Your Account has been disabled!</div>
-        	</c:if>
-	   </c:forEach> -->   
 
  </div> 
     <div class="footer">

@@ -107,7 +107,6 @@ public class PaystubUtil {
 		//initializing netPay to grossPay
 		 if(psutil.validDateCheck(date)==true) {
 				netPay=curAmount.get(0);
-				System.out.println("in psutil"+netPay);
 		 }
 
 		 //List of dba codes corresponding to the dates chosen by user

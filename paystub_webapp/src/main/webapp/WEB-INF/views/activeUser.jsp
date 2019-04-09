@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<div class="jumbatron">
-			<h1>Your Account is already setup! Please login</h1>
+			<h1>Your Account is already setup! Please login <a href="http://localhost:8080/login">here</a></h1>
 		</div>
 	</div>
 </body>

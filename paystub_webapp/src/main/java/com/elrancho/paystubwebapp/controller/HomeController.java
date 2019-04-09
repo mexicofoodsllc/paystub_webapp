@@ -10,9 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.elrancho.paystubwebapp.entity.Paystub;
 import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
+import com.elrancho.paystubwebapp.service.UserServiceImpl;
 import com.elrancho.paystubwebapp.util.PaystubUtil;
 
 
@@ -23,6 +25,8 @@ public class HomeController {
 	PaystubServiceImpl psimpl;
 	@Autowired
 	PaystubUtil psutil;
+	@Autowired
+	UserServiceImpl usrimpl;
 	 
 	 //returns index.jsp
    @RequestMapping("/login")
@@ -40,44 +44,51 @@ public class HomeController {
 	   return "security_question";
    }
    
-   @PostMapping("/home")
-   public String getHome(Model model) {
+   @PostMapping("/home") 
+   public String getHome(@RequestParam("pwd") String pwd, Model model) {
 	   
-	   List<Paystub> paystubList = psimpl.getAllPaystubs();
-	   model.addAttribute("paystubs", paystubList);
-	   
-	   //set containing unique dates from paystub table
-	   Set<LocalDate> dateSet = psutil.getDates();
-	   model.addAttribute("dateSet",dateSet);
-
-	   //grossPayList has all the grossPays in the table
-	   List<Float> grossPayList = new ArrayList<Float>();
-	   for(LocalDate d:dateSet) {
-		 grossPayList.add(psutil.grossPayGenerator(d));
-		   
-	   }
-	   
-	   model.addAttribute("grossPayList",grossPayList);
-	   
-	  List<Float> netPayList = new ArrayList<Float>();
+	   boolean isPasswordValid = usrimpl.passwordValidator(pwd);
+	   System.out.println("isPasswordValid " +isPasswordValid);
 	  
-	  for(LocalDate d:dateSet) {
-		   
-		netPayList.add(psutil.netPayGenerator(d));
-		   
-	   }
-	   model.addAttribute("netPayList",netPayList);
+	   if(isPasswordValid==false) {
+		  String errMsg = "Your password is incorrect";
+		  model.addAttribute("errMsg", errMsg);
+		  return "index";
+	  }
 	   
-	   List<Integer> hoursList = new ArrayList<Integer>();
+	 
+	   else {
+		   //set containing unique dates from paystub table
+		   Set<LocalDate> dateSet = psutil.getDates();
+		   model.addAttribute("dateSet",dateSet);
+
+		   //grossPayList has all the grossPays in the table
+		   List<Float> grossPayList = new ArrayList<Float>();
+		   for(LocalDate d:dateSet) {
+			 
+			   grossPayList.add(psutil.grossPayGenerator(d));   
+		   }
+	   
+		   model.addAttribute("grossPayList",grossPayList);
+	   
+		   List<Float> netPayList = new ArrayList<Float>();
+	  
+		   for(LocalDate d:dateSet) {
+		   
+			   netPayList.add(psutil.netPayGenerator(d));
+		   }
+		   model.addAttribute("netPayList",netPayList);
+	   
+		   List<Integer> hoursList = new ArrayList<Integer>();
 		  
 		  for(LocalDate d:dateSet) {
 			hoursList.add(psutil.totalHoursGenerator(d));
 			   
 		   }
-		   model.addAttribute("hoursList",hoursList);
-	   
-       return "paystubSummary";
+		  model.addAttribute("hoursList",hoursList);   
+		  return "paystubSummary";
+	   }
+
+	  
    }
-   
- 
 }

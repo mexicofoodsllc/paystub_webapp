@@ -16,32 +16,15 @@ public class Users {
 	@NotNull
 	@Id
 	int employeeId;
-	int ssn;
-	
 	String password;
-	LocalDate dob;
 	
 	public Users() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Users(int employeeId, int ssn, String password, LocalDate dob) {
+	public Users(int employeeId, String password) {
 		this.employeeId = employeeId;
-		this.ssn = ssn;
 		this.password = password;
-		this.dob = dob;
-	}
-	public int getSsn() {
-		return ssn;
-	}
-	public void setSsn(int ssn) {
-		this.ssn = ssn;
-	}
-	public LocalDate getDob() {
-		return dob;
-	}
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
 	}
 	
 	public int getEmployeeId() {
@@ -59,7 +42,6 @@ public class Users {
 	}
 	@Override
 	public String toString() {
-		return "Users [employeeId=" + employeeId + ", ssn=" + ssn + ", password=" + password
-				+ ", dob=" + dob + "]";
+		return "Users [employeeId=" + employeeId + ", password=" + password + "]";
 	} 
 }
