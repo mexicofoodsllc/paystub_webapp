@@ -1,3 +1,4 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ page import="com.elrancho.paystubwebapp.service.PaystubServiceImpl"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +8,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.3.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
   	<link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -15,35 +18,48 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
   	<script>
+  	
 	/*$( function() {
 	    $( "#datepicker1" ).datepicker();
 	     } );*/
 	$( function() {
 	    $( "#datepicker2" ).datepicker();
 	  } );
-	
-	$(document).ready(function(){
-		$('.table-row-hide').click(function() {
-		  $(".table-row-hide").show();
-		  $(this).hide();
-		});
-	});
-	/*$(document).ready(function(){
-		$( "table" ).on( "click", "tr", function() {
-			location.href = "http://ec2-3-90-133-23.compute-1.amazonaws.com:8080/paystub_webapp/paystubDetail.jsp";
-			});
-	});*/
+
+	     /*$(function(){
+		     $("#paystubSummary").click(function() {
+					$("#totalPaySummary").hide();
+					$("#paySelected").show();
+		     });
+	     });
+	    $(function(){ 
+	     $('#paySelected').hide();
+	     $('#paystubSummary').click(function(){
+	    	    $('#paySelected,#totalPaySummary').toggle();
+	    	});
+	    });*/
+	    
+	    $(function() { //shorthand document.ready function
+            $('#paySelected').hide();
+	        $('#dateForm').on('submit', function(e) { //use on if jQuery 1.7+
+	            //e.preventDefault();  //prevent form from submitting
+	            $('#paySelected').show();
+	            $('#totalPaySummary').hide();
+	        });
+	    });
   	</script>
     
     <style>
     .navbar-color {
-            background-color: #eee;
             margin-top: 60px;
             padding: 1pc;
             font-size: 20px
         }
         
-        
+      .navbar-inverse {
+			border-color:white;
+		}
+
 		.calenderdiv_style{
 			width: 40%;
 			color: #777;
@@ -92,11 +108,14 @@
         th{
        		width:110px;
         }
-        .table-row-hide{
-			/*cursor: pointer;
-			display:none;*/
-		}
-        
+
+        .noPay{
+        	background-color: yellow;
+   			width: 50%;
+   			border-style: solid;
+  			border-color: black;
+  			padding:10px;
+        }
         .logout{
 		
 		  }
@@ -117,7 +136,13 @@
             width:110px;
         }
 
-       
+       .selectedPaystyle{
+       	    border-top: none;
+       }
+      .hidden{
+       	display:none;
+       }
+
         /* On screens that are 900px or less (tablet), set the background color to olive */
         @media screen and (max-width: 900px) {
             .pay_div {
@@ -135,10 +160,11 @@
  			}
         }
     </style>
+
 </head>
 
-<body style="background-color:#DAF7A6">
-    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:#DAF7A6">
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top navbar-color" role="navigation" style="background-color:white">
         <div class="container">
             <div class="navbar-header">
             	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="142"/>
@@ -158,7 +184,7 @@
                  
             	<ul class="nav navbar-nav navbar-right">
                     <li style="color:#ba150f;">
-                    	<form action="/"> 
+                    	<form action="/login"> 
                     		<input type="submit" value="Logout" class="logout"/>
         				</form>
         			</li>
@@ -169,19 +195,19 @@
     
 
     <div class="container">
-        <div class="jumbotron" style="background-color:#DAF7A6">
+        <div class="jumbotron">
             
             <div class="calenderdiv_style">
-				<form action="fetch_paystub" method="post">
+				<form action="fetch_paystub" id="dateForm" method="post">
             		<!-- <p id="calenderTitle">View paychecks from:</p>
 	            	<input type="text" id="datepicker1" name="from"/>-->
-	            	<p id="calenderTitle">Choose Date to view Pay stub:</p> 
-	            	<input type="text" id="datepicker2" name="to"/>
-	            	<input type="submit" value="Paystub Summary" class="paystub_btn"/>
+	            	<p id="calenderTitle">Choose date to view Pay stub details:</p> 
+	            	<input type="text" id="datepicker2" name="to" required/>
+	            	<input type="submit" value="View Paystub Summary"  class="paystub_btn" id="paystubSummary"/>
 	            </form>
 			</div>
 			
-           <div id="paycheckAmount" class="pay_div">
+           <div id="totalPaySummary" class="pay_div">
             	
                  <table class="table table-hover">
 				  <thead>
@@ -193,17 +219,52 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-					    
-					  <tr class="table-row-hide">
-						<td class="latestPaycheckLabel">${datepicker2}</td>
-						<td class="latestPaycheckNumber">${GrossPay}</td>
-						<td class="latestPaycheckNumber">${NetPay}</td>
-						<td class="latestPaycheckNumber">${hours}</td>
-						 <td><form action="paystubDetail"><input type="submit" value="Paystub Detail" /></form></td>
-					    </tr>
-					   
+					 <c:forEach var="date" items="${dateSet}"  varStatus="status">
+						  <tr>
+							<td class="latestPaycheckLabel"><a href="paystubDetail.jsp"></a>${date}</td>
+							<td class="latestPaycheckNumber">$${grossPayList[status.index]}</td>
+							<td class="latestPaycheckNumber">$${netPayList[status.index]}</td>
+							<td class="latestPaycheckNumber">${hoursList[status.index]}</td>
+						  </tr>
+						</c:forEach>
+
 				  </tbody>
 				  </table>
+            </div>
+            
+            <div id="paySelected" class="pay_div">
+            	 <table class="table">
+				  <thead>
+				    <tr>
+				    	<th>PAY DATE</th>
+     					<th>GROSS PAY</th>
+     					<th>NET PAY</th>
+     					<th>HOURS</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+					<c:if test="${grossPay ne 0}">    
+						 
+						<tr class="table-row-hide">
+							<td class="latestPaycheckLabel selectedPaystyle">${datepicker2}</td>
+							<td class="latestPaycheckNumber selectedPaystyle">${grossPay}</td>
+							<td class="latestPaycheckNumber selectedPaystyle">${NetPay}</td>
+							<td class="latestPaycheckNumber selectedPaystyle">${hours}</td>
+							 <td class="latestPaycheckNumber selectedPaystyle">
+							 	<form action="paystubDetail">
+							 		<input type="submit" value="Paystub Detail" />
+							 	</form>
+							 </td>
+					    </tr>
+						  
+					 </c:if> 
+				  </tbody>
+				  </table>
+				  <c:if test="${grossPay eq 0}"> 
+					 	<div class="noPay">
+					 		${errorMsg}
+					 	</div>
+				  </c:if>
             </div>
            </div>
            <div class="footer">

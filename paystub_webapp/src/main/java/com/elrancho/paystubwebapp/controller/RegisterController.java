@@ -60,7 +60,7 @@ public class RegisterController {
 	   
 	  
 	  @PostMapping("/pwdValid")
-	  public String securityQuestion(@RequestParam("pwd1") String pwd, Model model) {
+	  public String passwordCheck(@RequestParam("pwd1") String pwd, Model model) {
 	    password = pwd;
 		//checking if the same password is already in the database
 	  		boolean isPwdPresent = usimpl.passwordValidator(password);

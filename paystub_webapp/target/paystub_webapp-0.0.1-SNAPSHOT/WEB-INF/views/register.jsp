@@ -1,3 +1,5 @@
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -8,37 +10,34 @@
 <link rel="stylesheet" href="/resources/css/style.css">
 <script type="text/javascript" src="/resources/js/app.js"></script>
 <style>
-        body{
-         background-color:#DAF7A6
-        }
         
         .regstyle{
             width: 400px !important;
     		margin: auto;
     	    margin-top: 150px; 
     	}
+    	    	
 </style>
+
 
 <title>Employee Registration</title>
 </head>
-<body style="background-color:#DAF7A6">
+<body>
    <div class="container">
    
   	<h2 style="text-align:center"><strong>Register to View, Download and Print your PayStub</strong></h2>
   	
-  <div class="jumbotron regstyle" style="background-color:#DAF7A6">
-  
-    <form action="/regmanagement" method="post">
+  <div class="jumbotron regstyle">
+    <form action="regmanagement" method="post">
 	    <div class="form-group">
-	     Employee ID<input type="text" name="empid" class="form-control" placeholder="Employee ID" required/>
+	     Employee ID<input type="text" name="empid" id="eid" class="form-control" placeholder="Employee ID" required/>
 	    </div>
-	    
 	    <div class="form-group"> 
-	         <input type="submit" value="Next" class="btn btn-primary btn-block"/>
-	     </div>
-  
-   </form>
-  </div> 
+			<input type="submit" value="Next" class="btn btn-primary btn-block"/>
+	  	</div>		
+	</form>
+
+ </div> 
     <div class="footer">
    <p>&copy ElRancho Supermercado</p>
   </div>

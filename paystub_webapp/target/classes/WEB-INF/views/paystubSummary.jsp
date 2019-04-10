@@ -26,21 +26,34 @@
 	    $( "#datepicker2" ).datepicker();
 	  } );
 
-	     $(function(){
+	     /*$(function(){
 		     $("#paystubSummary").click(function() {
-				if ($("#paySelected").hasClass("hidden")) {
 					$("#totalPaySummary").hide();
 					$("#paySelected").show();
-				};
 		     });
 	     });
+	    $(function(){ 
+	     $('#paySelected').hide();
+	     $('#paystubSummary').click(function(){
+	    	    $('#paySelected,#totalPaySummary').toggle();
+	    	});
+	    });*/
+	    
+	    $(function() { //shorthand document.ready function
+            $('#paySelected').hide();
+	        $('#dateForm').on('submit', function(e) { //use on if jQuery 1.7+
+	            //e.preventDefault();  //prevent form from submitting
+	            $('#paySelected').show();
+	            $('#totalPaySummary').hide();
+	        });
+	    });
   	</script>
     
     <style>
     .navbar-color {
             margin-top: 60px;
             padding: 1pc;
-            font-size: 20px
+            font-size: 20px;
         }
         
       .navbar-inverse {
@@ -196,7 +209,7 @@
 			
            <div id="totalPaySummary" class="pay_div">
             	
-                 <table class="table">
+                 <table class="table table-hover">
 				  <thead>
 				    <tr>
 				    	<th>PAY DATE</th>
@@ -219,7 +232,7 @@
 				  </table>
             </div>
             
-            <div id="paySelected" class="pay_div hidden">
+            <div id="paySelected" class="pay_div">
             	 <table class="table">
 				  <thead>
 				    <tr>

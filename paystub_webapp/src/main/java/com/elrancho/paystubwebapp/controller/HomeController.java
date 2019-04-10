@@ -8,11 +8,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.elrancho.paystubwebapp.entity.Paystub;
+import com.elrancho.paystubwebapp.entity.Users;
 import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
 import com.elrancho.paystubwebapp.service.UserServiceImpl;
 import com.elrancho.paystubwebapp.util.PaystubUtil;
@@ -27,6 +30,7 @@ public class HomeController {
 	PaystubUtil psutil;
 	@Autowired
 	UserServiceImpl usrimpl;
+	String password;
 	 
 	 //returns index.jsp
    @RequestMapping("/login")
@@ -41,12 +45,15 @@ public class HomeController {
    
    @PostMapping("/forgotpwd")
    public String resetPassword() {
-	   return "security_question";
+	   return "forgotpwdSecurityQuestions";
    }
+   
+
    
    @PostMapping("/home") 
    public String getHome(@RequestParam("pwd") String pwd, Model model) {
 	   
+	   password = pwd;
 	   boolean isPasswordValid = usrimpl.passwordValidator(pwd);
 	   System.out.println("isPasswordValid " +isPasswordValid);
 	  
@@ -58,8 +65,15 @@ public class HomeController {
 	   
 	 
 	   else {
-		   //set containing unique dates from paystub table
-		   Set<LocalDate> dateSet = psutil.getDates();
+		   
+		   model.addAttribute("pwd", password);
+		   int employeeId = usrimpl.getEmpId(pwd);
+		   
+		   List<Paystub> paystubList = psimpl.getAllPaystubs(employeeId);
+		   System.out.println("paystubList"+paystubList);
+		   
+		   //set containing unique dates from paystub list
+		   Set<LocalDate> dateSet = psutil.getDates(employeeId);
 		   model.addAttribute("dateSet",dateSet);
 
 		   //grossPayList has all the grossPays in the table
@@ -88,7 +102,8 @@ public class HomeController {
 		  model.addAttribute("hoursList",hoursList);   
 		  return "paystubSummary";
 	   }
-
-	  
-   }
+  
+	   }
+  
 }
+

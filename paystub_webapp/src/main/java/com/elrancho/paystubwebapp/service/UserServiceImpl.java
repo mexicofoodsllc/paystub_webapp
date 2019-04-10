@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.elrancho.paystubwebapp.dao.UsersRepository;
 import com.elrancho.paystubwebapp.entity.Users;
+import com.elrancho.paystubwebapp.repository.UsersRepository;
 
 
 @Service
@@ -21,8 +21,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void registerUser(Users user) {
 		
-		usersRepository.save(user);
-		
+		usersRepository.save(user);	
 	}
 
 	@Override
@@ -30,7 +29,6 @@ public class UserServiceImpl implements UserService {
 		boolean isActive=false;
 		Iterable<Users> userList = usersRepository.findAll();
 		for(Users u:userList) {
-			System.out.println("userList"+u);
 			if(u.getEmployeeId()==empid) {
 				isActive=true;
 			}

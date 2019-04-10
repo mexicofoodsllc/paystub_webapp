@@ -8,10 +8,15 @@
 	<script type="text/javascript" src="/resources/js/app.js"></script>
 	
 	<title>Employee Login</title>
+	
+	<script type='text/javascript'>
+
+	</script>
 	<style>
 
 		.margin{
 		    margin-top: 25px;
+		    width:50%;
 		}
 		.button_style{
         	
@@ -24,13 +29,16 @@
         }
         .form-control{
             width: 50% !important;
-            }
+         }
 
-	
+		.pwdinvalid{
+			font-size:12px !important;
+			color:red;
+		}
          /* On screens that are 900px or less, set set the jumbotron width*/
         @media screen and (max-width: 900px) {
             .jumbotron {
-                 width: 40%;
+                 width: 50%;
             }
         }
          /* On screens that are 600px or less, set the jumbotron width */
@@ -41,30 +49,32 @@
 	</style>
 </head>
 
-<body style="background-color:#DAF7A6">
+<body>
    <div class="container">
 
   	<img src="https://s3.amazonaws.com/wbd.employer-images/01984_logo_1522248608_v.jpg" width="200" height="200"/>
-  <div class="jumbotron margin" style="background-color:#DAF7A6">
+  <div class="jumbotron margin">
   
     <form action="home" method="post">
     	<p>Employee Login<p>
 
     	<div class="form-group">
-     		<input type="password" name="pwd" maxLength="6" class="form-control" placeholder="Password" required/>
+     		<input type="password" name="pwd" minlength="6" class="form-control" placeholder="Password" required/>
+			<p class="pwdinvalid">${errMsg }</p>
         </div>
+
         <div class="form-group"> 
               <input type="submit" value="Login" class="btn btn-primary btn-default button_style"/>
         </div>
      </form>
    
    	<div class="bottom-container">
-   		<form action="/register" method="post">
+   		<form action="register" method="post">
    			<div class="form-group">
 	  			<input type="submit"class="btn btn-primary btn-default button_style" value="Register"/>
 	  		</div>
 	  	</form>
-	  	<form action="/forgotpwd" method="post">
+	  	<form action="forgotpwd" method="post">
 	  		<div class="form-group">
 	  			<input type="submit"class="btn btn-primary btn-danger" value="Forgot Password?"/>
 	  		</div>

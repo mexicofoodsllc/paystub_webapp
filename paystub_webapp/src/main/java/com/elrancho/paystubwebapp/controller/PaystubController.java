@@ -2,13 +2,13 @@ package com.elrancho.paystubwebapp.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,9 +42,9 @@ public class PaystubController {
 	 
 	   public String fetchResult(@RequestParam("to") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate datepicker2, Model model) {
 		 
-		   model.addAttribute("datepicker2", datepicker2);
+		 //System.out.println("password"+pwd);  
+		 model.addAttribute("datepicker2", datepicker2);
 		   datePicker = datepicker2;
-		   
 		   //List of current amounts corresponding to the dates chosen by user
 		   List<Float> currentAmount = psutil.curAmountGenerator(datePicker);
 		   model.addAllAttributes(currentAmount);

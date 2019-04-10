@@ -15,6 +15,6 @@ public interface PaystubService {
 	public Float findTotalYrToPay(LocalDate date);
 	
 	public List<Paystub> findPaystubDetails(LocalDate Date);
-	public List<Paystub> getAllPaystubs();
+	public List<Paystub> getAllPaystubs(int empId);
 
 }

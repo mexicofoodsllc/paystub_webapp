@@ -15,6 +15,7 @@ com\elrancho\paystubwebapp\entity\Employee.class
 com\elrancho\paystubwebapp\entity\PaystubId.class
 com\elrancho\paystubwebapp\MainApp.class
 com\elrancho\paystubwebapp\service\PaystubService.class
+com\elrancho\paystubwebapp\SpringApplicationContext.class
 com\elrancho\paystubwebapp\service\DbaServiceImpl.class
 com\elrancho\paystubwebapp\dao\PaystubRepository.class
 com\elrancho\paystubwebapp\util\PaystubUtil.class

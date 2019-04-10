@@ -141,9 +141,9 @@ public class PaystubUtil {
 		
 	}
 
-	public Set<LocalDate> getDates() {
+	public Set<LocalDate> getDates(int empId) {
 		Set<LocalDate> dateSet = new TreeSet<LocalDate>();
-		List<Paystub> paystubList = psimpl.getAllPaystubs();
+		List<Paystub> paystubList = psimpl.getAllPaystubs(empId);
 		for(Paystub p:paystubList) {
 			dateSet.add(p.getPayPeriodEndDate());
 		}
@@ -161,47 +161,6 @@ public class PaystubUtil {
 		 return grossPay;
 		
 	}
-	
-	/*public Map<String, String> earningGenerator(LocalDate date, List<Float> curAmount){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		//List of dba type corresponding to the dates chosen by user
-		   List<String> typeList = psutil.dbaTypeGenerator(date);
-		
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
-		//list of  description- Earning or deduction
-		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
-		  //list to store earnings types
-		   Map<String, String> earnings = new HashMap<String, String>();;
-		 
-		   for(int i=0;i<typeList.size();i++) {
-			   if(dbaDesc.get(i).contains("Earnings")) {
-				   earnings.put(typeList.get(i), "$"+curAmount.get(i));
-			   }
-		   }
-		return earnings;
-		
-	}
-	
-	
-	public Map<String, String> deductionGenerator(LocalDate date, List<Float> curAmount){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		//List of dba type corresponding to the dates chosen by user
-		   List<String> typeList = psutil.dbaTypeGenerator(date);
-		
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
-		//list of  description- Earning or deduction
-		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
-		  //list to store earnings types
-		   Map<String, String> deductions = new HashMap<String, String>();;
-		 
-		   for(int i=0;i<typeList.size();i++) {
-			   if(dbaDesc.get(i).contains("Deductions")) {
-				   deductions.put(typeList.get(i), "$"+curAmount.get(i));
-			   }
-		   }
-		return deductions;
-		
-	}*/
 	
 
 }

@@ -10,8 +10,9 @@ import com.elrancho.paystubwebapp.entity.Employee;
 public interface EmployeeService {
 
 	public boolean activeEmployeeCheck(int empid);
-	List<Employee> getEmployeeDetails(int empid);
+	List<Employee> getEmployeeDetails();
 	public boolean securityQuestionCheck(LocalDate dob, String ssn);
+	public int getEmpIdWithDobSsn(LocalDate dob, String ssn);
 
 	
 	
