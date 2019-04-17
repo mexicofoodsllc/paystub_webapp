@@ -27,7 +27,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean activeUserCheck(int empid) {
 		boolean isActive=false;
-		Iterable<Users> userList = usersRepository.findAll();
+		Iterable<Users> userList = usersRepository.findByEmployeeId(empid);
+		System.out.println(userList);
 		for(Users u:userList) {
 			if(u.getEmployeeId()==empid) {
 				isActive=true;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
 			else
 				isActive=false;
 		}
-	
+		System.out.println(isActive);
 		return isActive;
 	}
 

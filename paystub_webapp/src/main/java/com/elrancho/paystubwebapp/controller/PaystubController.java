@@ -22,7 +22,7 @@ import com.elrancho.paystubwebapp.util.PaystubUtil;
 @Controller
 public class PaystubController {
 
-	private LocalDate datePicker;
+	/*private LocalDate datePicker;
 	String dbaDesc, dbaType;
 	
 	@Autowired
@@ -98,5 +98,5 @@ public class PaystubController {
 		 
 
 		   return model;
-	}
+	}*/
 }

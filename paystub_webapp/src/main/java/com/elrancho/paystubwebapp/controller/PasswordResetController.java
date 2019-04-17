@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.elrancho.paystubwebapp.entity.Paystub;
 import com.elrancho.paystubwebapp.entity.Users;
 import com.elrancho.paystubwebapp.service.EmployeeServiceImpl;
 import com.elrancho.paystubwebapp.service.PaystubServiceImpl;
@@ -68,14 +69,15 @@ public class PasswordResetController {
 	      //registering new user in users table
 		    usimpl.registerUser(user);
 		
+		    List<Paystub> paystubList = psimpl.getAllPaystubs(employeeId);
 		  //set containing unique dates from paystub table
-			  Set<LocalDate> dateSet = psutil.getDates();
+			  Set<LocalDate> dateSet = psutil.getDates(paystubList);
 			  model.addAttribute("dateSet",dateSet);
 
 		   //grossPayList has all the grossPays in the table
 			  List<Float> grossPayList = new ArrayList<Float>();
 			  for(LocalDate d:dateSet) {
-				grossPayList.add(psutil.grossPayGenerator(d));
+				grossPayList.add(psutil.grossPayGenerator(d,employeeId));
 				   
 			  }
 		   
@@ -85,7 +87,7 @@ public class PasswordResetController {
 		  
 			  for(LocalDate d:dateSet) {
 				   
-				netPayList.add(psutil.netPayGenerator(d));
+				netPayList.add(psutil.netPayGenerator(d,employeeId));
 				   
 			   }
 			   model.addAttribute("netPayList",netPayList);
@@ -93,7 +95,7 @@ public class PasswordResetController {
 			   List<Integer> hoursList = new ArrayList<Integer>();
 			  
 			  for(LocalDate d:dateSet) {
-				hoursList.add(psutil.totalHoursGenerator(d));
+				hoursList.add(psutil.totalHoursGenerator(d,employeeId));
 				   
 			   }
 			 model.addAttribute("hoursList",hoursList);

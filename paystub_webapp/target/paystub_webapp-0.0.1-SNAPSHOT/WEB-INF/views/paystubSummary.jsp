@@ -17,43 +17,13 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   	
-  	<script>
   	
-	/*$( function() {
-	    $( "#datepicker1" ).datepicker();
-	     } );*/
-	$( function() {
-	    $( "#datepicker2" ).datepicker();
-	  } );
-
-	     /*$(function(){
-		     $("#paystubSummary").click(function() {
-					$("#totalPaySummary").hide();
-					$("#paySelected").show();
-		     });
-	     });
-	    $(function(){ 
-	     $('#paySelected').hide();
-	     $('#paystubSummary').click(function(){
-	    	    $('#paySelected,#totalPaySummary').toggle();
-	    	});
-	    });*/
-	    
-	    $(function() { //shorthand document.ready function
-            $('#paySelected').hide();
-	        $('#dateForm').on('submit', function(e) { //use on if jQuery 1.7+
-	            //e.preventDefault();  //prevent form from submitting
-	            $('#paySelected').show();
-	            $('#totalPaySummary').hide();
-	        });
-	    });
-  	</script>
     
     <style>
     .navbar-color {
             margin-top: 60px;
             padding: 1pc;
-            font-size: 20px
+            font-size: 20px;
         }
         
       .navbar-inverse {
@@ -65,7 +35,11 @@
 			color: #777;
             font: 15px "HelveticaNeue-Roman", sans-serif;
 		}
-
+		.jumbatron{
+			-webkit-box-shadow: 0px 3px 11px 2px rgba(0,0,0,0.2) !important;
+   			-moz-box-shadow: 0px 3px 11px 2px rgba(0,0,0,0.2) !important;
+   			box-shadow: 0px 3px 11px 2px rgba(0,0,0,0.2) !important;
+		}
         
 		 .paystub_btn{
         	    background-color: #ba150f;
@@ -142,7 +116,7 @@
       .hidden{
        	display:none;
        }
-
+		
         /* On screens that are 900px or less (tablet), set the background color to olive */
         @media screen and (max-width: 900px) {
             .pay_div {
@@ -160,6 +134,35 @@
  			}
         }
     </style>
+    
+    <script>
+  	
+	/*$( function() {
+	    $( "#datepicker1" ).datepicker();
+	     } );*/
+	$( function() {
+	    $( "#datepicker2" ).datepicker();
+	  } );
+
+   
+	  /*  $(function() { //shorthand document.ready function
+            //$('#paySelected').hide();
+	        $('#dateForm').submit(function() { //use on if jQuery 1.7+
+	            //e.preventDefault();  //prevent form from submitting
+	            $('#totalPaySummary').addClass("hidden")
+	            $('#paySelected').removeClass("hidden");
+	        });
+	    });*/
+	    
+	   /* $(function() { //shorthand document.ready function
+            //$('#paySelected').hide();
+	        $('#dateForm').submit(function() { //use on if jQuery 1.7+
+	           // e.preventDefault();  //prevent form from submitting
+	            $('#totalPaySummary').addClass("hidden")
+	            $('#paySelected').removeClass("hidden");
+	        });
+	    });*/
+  	</script>
 
 </head>
 
@@ -183,8 +186,8 @@
                 <h2><strong>Paystub Home</strong></h2>
                  
             	<ul class="nav navbar-nav navbar-right">
-                    <li style="color:#ba150f;">
-                    	<form action="/login"> 
+                    <li style="color:#ba150f;" class="fas fa-user-circle">
+                    	<form action="/"> 
                     		<input type="submit" value="Logout" class="logout"/>
         				</form>
         			</li>
@@ -198,11 +201,16 @@
         <div class="jumbotron">
             
             <div class="calenderdiv_style">
-				<form action="fetch_paystub" id="dateForm" method="post">
+				<form action="fetch_paystub" id="dateForm" method="post"  onsubmit="document.getElementById('totalPaySummary').style.display = 'none';document.getElementById('paySelected').style.display = '';">
             		<!-- <p id="calenderTitle">View paychecks from:</p>
 	            	<input type="text" id="datepicker1" name="from"/>-->
-	            	<p id="calenderTitle">Choose date to view Pay stub details:</p> 
+	            	<p id="calenderTitle">Select date to view Pay stub details:</p> 
 	            	<input type="text" id="datepicker2" name="to" required/>
+	            	 <!-- <select name="date">
+     					<c:forEach var="date" items="${dateSet}">
+         					<option value="${date}">${date}</option>
+     					</c:forEach>
+ 					</select> -->
 	            	<input type="submit" value="View Paystub Summary"  class="paystub_btn" id="paystubSummary"/>
 	            </form>
 			</div>

@@ -113,7 +113,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                    <li style="color:#ba150f;">
-                    	<form action="/login"> 
+                    	<form action="/"> 
                     		<input type="submit" value="Logout" class="logout"/>
         				</form>
         			</li>
@@ -121,7 +121,7 @@
             </div>
         </div>
     </nav>
-
+ 
     <div class="container" style=",background-color:white">
         <div class="jumbotron" style="height: 100%">  
             <div id="paycheckAmount" class="pay_div">

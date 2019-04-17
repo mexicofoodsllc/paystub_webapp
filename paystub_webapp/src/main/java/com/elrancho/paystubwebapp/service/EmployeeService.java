@@ -13,6 +13,7 @@ public interface EmployeeService {
 	List<Employee> getEmployeeDetails();
 	public boolean securityQuestionCheck(LocalDate dob, String ssn);
 	public int getEmpIdWithDobSsn(LocalDate dob, String ssn);
+	//public boolean isEmployee(int empid);
 
 	
 	

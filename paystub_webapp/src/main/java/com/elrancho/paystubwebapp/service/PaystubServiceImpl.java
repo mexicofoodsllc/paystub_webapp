@@ -15,26 +15,27 @@ public class PaystubServiceImpl implements PaystubService {
 	
 	@Autowired 
 	private PaystubRepository paystubRepository;
-	List<Paystub> paystubs;
+	public List<Paystub> paystubs;
 	
 	@Override
 	public List<Paystub> getAllPaystubs(int empId) {
-		List<Paystub> paystubs = paystubRepository.findAll();
-		//System.out.println("PAystubs "+paystubs);
+		List<Paystub> paystubs = paystubRepository.findByEmployeeId(empId);
+
+		
 		return paystubs;
 	}
 
 	//method to get the current Amount corresponding to the date passed from controller
 	@Override
-	public List<Float> findCurrentAmount(LocalDate date) {
+	public List<Float> findCurrentAmount(LocalDate date, int employeeId) {
 		List<Float> curAmount = new ArrayList<>();
-		//Iterable<Paystub> paystubs = getAllPaystubs();
-				
+		Iterable<Paystub> paystubs = paystubRepository.findByEmployeeId(employeeId);
+		System.out.println("PAystubs "+paystubs);
 		//selecting the currentAmount corresponding to the dates selected by user and adding it to the list curAmount
 		for(Paystub paystub: paystubs) {
 			if(date.equals(paystub.getPayPeriodEndDate())) {
 				curAmount.add(paystub.getCurrentAmount());
-			}
+			} 
 			//else
 				//curAmount.add(0.0f);
 						
@@ -43,9 +44,9 @@ public class PaystubServiceImpl implements PaystubService {
 	}
 
 	@Override
-	public List<Integer> findDbaCode(LocalDate date) {
+	public List<Integer> findDbaCode(LocalDate date,int employeeId) {
 		List<Integer> dbaCode = new ArrayList<>();
-		//Iterable<Paystub> paystubs = getAllPaystubs();
+		Iterable<Paystub> paystubs = paystubRepository.findByEmployeeId(employeeId);
 		for(Paystub paystub: paystubs) {
 			if(date.equals(paystub.getPayPeriodEndDate())) {
 				dbaCode.add(paystub.getDbaCode());
@@ -56,9 +57,9 @@ public class PaystubServiceImpl implements PaystubService {
 	}
 
 	@Override
-	public List<Integer> findTotalHours(LocalDate date) {
+	public List<Integer> findTotalHours(LocalDate date,int employeeId) {
 		List<Integer> hoursList = new ArrayList<Integer>();
-		//Iterable<Paystub> paystubs = getAllPaystubs();
+		Iterable<Paystub> paystubs = paystubRepository.findByEmployeeId(employeeId);
 		for(Paystub paystub: paystubs) {
 			if(date.equals(paystub.getPayPeriodEndDate())) {
 				
@@ -70,8 +71,8 @@ public class PaystubServiceImpl implements PaystubService {
 	}
 
 	@Override
-	public List<Paystub> findPaystubDetails(LocalDate Date) {
-		//Iterable<Paystub> paystubs = getAllPaystubs();
+	public List<Paystub> findPaystubDetails(LocalDate Date,int employeeId) {
+		Iterable<Paystub> paystubs = paystubRepository.findByEmployeeId(employeeId);
 		List<Paystub> ps= new ArrayList<Paystub>();
 		//filtering the paystub based on payperiod end date
 		for(Paystub paystub: paystubs) {
@@ -84,9 +85,9 @@ public class PaystubServiceImpl implements PaystubService {
 	}
 
 	@Override
-	public Float findTotalYrToPay(LocalDate date) {
+	public Float findTotalYrToPay(LocalDate date,int employeeId) {
 		Float TotalYearToPay = 0.0f;
-		//Iterable<Paystub> paystubs = getAllPaystubs();
+		Iterable<Paystub> paystubs = paystubRepository.findByEmployeeId(employeeId);
 		for(Paystub paystub: paystubs) {
 			if(date.equals(paystub.getPayPeriodEndDate())) {
 				

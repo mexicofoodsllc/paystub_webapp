@@ -58,9 +58,9 @@ public class PaystubUtil {
 			
 		}
 	//method to check if the user entered date is in the database
-	public boolean validDateCheck(LocalDate datePicker) {
+	/*public boolean validDateCheck(LocalDate datePicker) {
 		
-		LocalDate saturdayDatepicker2 = ps.dayConverter(datePicker);
+		LocalDate saturdayDatepicker2 = dayConverter(datePicker);
 		
 		boolean isDateValid=true;
 		Set<LocalDate> dateSet = ps.getDates();
@@ -72,21 +72,21 @@ public class PaystubUtil {
 		
 		return isDateValid;
 		
-	}
+	}*/
 	//list of amounts in $ corresponding to selected date
-	public List<Float> curAmountGenerator(LocalDate datePicker){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(datePicker);
-		 List<Float> currentAmount = psimpl.findCurrentAmount(saturdayDatepicker2);
+	public List<Float> curAmountGenerator(LocalDate datePicker, int employeeId){
+		LocalDate saturdayDatepicker2 = dayConverter(datePicker);
+		 List<Float> currentAmount = psimpl.findCurrentAmount(saturdayDatepicker2, employeeId);
 		return currentAmount;
 	
 	}
 	
 	//list of dba types corresponding to selected date
-	public List<String> dbaTypeGenerator(LocalDate datepicker){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(datepicker);
+	public List<String> dbaTypeGenerator(LocalDate datepicker,int employeeId){
+		LocalDate saturdayDatepicker2 = dayConverter(datepicker);
 		
 		//List of dba codes corresponding to the dates chosen by user
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2); 
+		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2, employeeId); 
 		   List<String> dbaType = dbaimpl.findDbaType(codeList);
 		   
 		   dbaType.set(1,"Federal Income Tax") ;
@@ -97,20 +97,20 @@ public class PaystubUtil {
 		
 	}
 	
-	public float netPayGenerator(LocalDate date) {
+	public float netPayGenerator(LocalDate date, int employeeId) {
 		
 		
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
+		LocalDate saturdayDatepicker2 = dayConverter(date);
 		float netPay = 0;
 		
-		List<Float> curAmount = psimpl.findCurrentAmount(saturdayDatepicker2);
+		List<Float> curAmount = psimpl.findCurrentAmount(saturdayDatepicker2,employeeId);
 		//initializing netPay to grossPay
-		 if(psutil.validDateCheck(date)==true) {
+		 //if(psutil.validDateCheck(date)==true) {
 				netPay=curAmount.get(0);
-		 }
+		 //}
 
 		 //List of dba codes corresponding to the dates chosen by user
-		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2);
+		   List<Integer> codeList = psimpl.findDbaCode(saturdayDatepicker2,employeeId);
 		   
 		 //list of  description- Earning or deduction
 		   List<String> dbaDesc = dbaimpl.findDbaDescription(codeList);
@@ -127,12 +127,12 @@ public class PaystubUtil {
 		
 	}
 	
-	public int totalHoursGenerator(LocalDate date) {
+	public int totalHoursGenerator(LocalDate date, int employeeId) {
 		
 		int totalHours=0;
 		
-		LocalDate saturdayDatepicker2 = ps.dayConverter(date);
-		 List<Integer> hours = psimpl.findTotalHours(saturdayDatepicker2);
+		LocalDate saturdayDatepicker2 = dayConverter(date);
+		 List<Integer> hours = psimpl.findTotalHours(saturdayDatepicker2,employeeId);
 		 
 		 for(Integer hour:hours) {
 			 totalHours += hour;
@@ -141,9 +141,9 @@ public class PaystubUtil {
 		
 	}
 
-	public Set<LocalDate> getDates(int empId) {
+	public Set<LocalDate> getDates(List<Paystub> paystubList) {
 		Set<LocalDate> dateSet = new TreeSet<LocalDate>();
-		List<Paystub> paystubList = psimpl.getAllPaystubs(empId);
+		//List<Paystub> paystubList = psimpl.getAllPaystubs(empId);
 		for(Paystub p:paystubList) {
 			dateSet.add(p.getPayPeriodEndDate());
 		}
@@ -153,10 +153,10 @@ public class PaystubUtil {
 	
 
 
-	public Float grossPayGenerator(LocalDate datePicker){
-		LocalDate saturdayDatepicker2 = ps.dayConverter(datePicker);
+	public Float grossPayGenerator(LocalDate datePicker, int employeeId){
+		LocalDate saturdayDatepicker2 = dayConverter(datePicker);
 		
-		 List<Float> currentAmount = psimpl.findCurrentAmount(saturdayDatepicker2);
+		 List<Float> currentAmount = psimpl.findCurrentAmount(saturdayDatepicker2, employeeId);
 		 float grossPay = currentAmount.get(0);
 		 return grossPay;
 		

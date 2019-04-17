@@ -3,6 +3,7 @@ package com.elrancho.paystubwebapp.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Autowired
 	EmployeeRepository employeeRepository;
 	
-	
 	public List<Employee> getEmployeeDetails() {
 		
 		List<Employee> emp = employeeRepository.findAll();
@@ -29,18 +29,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 		String status = null;
 		boolean isActive=true;
 		
-		//Iterable<Employee> emp = getEmployeeDetails();
-		Iterable<Employee> emp = employeeRepository.findByEmployeeId(empid);
-		for(Employee e: emp) {
-			if(e.getEmployeeId()==empid){
-				status = e.getStatus();
-			}
-		}
+		Employee emp = employeeRepository.findByEmployeeId(empid);
+		status = emp.getStatus();
 		if(status.equalsIgnoreCase("A")) //comparing with active flag "A" from employee table
 				isActive=true;	
 			else
 				isActive=false;
-		System.out.println("isActive"+isActive);
+		//System.out.println("isActive"+isActive);
 		return isActive;
 	}
 	
@@ -48,31 +43,33 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public boolean securityQuestionCheck(LocalDate dob, String ssn) {
 		boolean isSecurityQuestionTrue= false;
-		//List<Employee> emp = getEmployeeDetails();
-		List<Employee> emp = employeeRepository.findByBirthDateAndSsn(dob, ssn);
-		System.out.println("emp"+emp);
-		/*for(Employee e: emp) {
-			if((e.getBirthDate().equals(dob))&& (e.getSsn().equals(ssn))){
-					isSecurityQuestionTrue=true;
-				}
-			}*/
-		if(!emp.isEmpty()) {
+			
+		Optional<Employee> emp = employeeRepository.findByBirthDateAndSsn(dob, ssn);
+		if(emp.isPresent()) {
 			isSecurityQuestionTrue = true;
 		}
-			
+		else {
+			isSecurityQuestionTrue= false;
+		}
 		
 		return isSecurityQuestionTrue;
 	}
 
 	@Override
 	public int getEmpIdWithDobSsn(LocalDate dob, String ssn) {
-		List<Employee> emp = employeeRepository.findByBirthDateAndSsn(dob, ssn);
+		/*List<Employee> emp = employeeRepository.findByBirthDateAndSsn(dob, ssn);
 		int empId = 0;
 		for(Employee e: emp) {
 			if((e.getBirthDate().equals(dob))&& (e.getSsn().equals(ssn))){
 					empId = e.getEmployeeId();
 				}
-			}
+			}*/
+		Optional<Employee> emp = employeeRepository.findByBirthDateAndSsn(dob, ssn);
+		int empId = 0;
+		if(securityQuestionCheck(dob,ssn)==true) {
+			empId = emp.get().getEmployeeId();
+			System.out.println("empId "+empId);
+		}
 		return empId;
 	}
 

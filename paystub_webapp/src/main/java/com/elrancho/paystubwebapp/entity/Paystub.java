@@ -135,8 +135,14 @@ public class Paystub {
 
 	@Override
 	public String toString() {
-		return "Paystub [currentAmount=" + currentAmount + ", description=" + description +", dbaCode=" + dbaCode +", hours=" + hours +"ytdAmount=" + ytdAmount + "]"; 
+		return "Paystub [id=" + id + ", description=" + description + ", employeeId=" + employeeId + ", dbaCode="
+				+ dbaCode + ", hours=" + hours + ", currentAmount=" + currentAmount + ", ytdAmount=" + ytdAmount
+				+ ", payPeriodEndDate=" + payPeriodEndDate + ", checkDate=" + checkDate + "]";
 	}
+
+
+
+	
 
 
 	

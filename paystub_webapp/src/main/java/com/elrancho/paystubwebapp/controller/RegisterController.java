@@ -100,14 +100,15 @@ public class RegisterController {
 		  //registering new user in users table
 			  usimpl.registerUser(user);
 		   
+			List<Paystub> paystubList = psimpl.getAllPaystubs(employeeId);
 		   //set containing unique dates from paystub table
-			  Set<LocalDate> dateSet = psutil.getDates();
+			  Set<LocalDate> dateSet = psutil.getDates(paystubList);
 			  model.addAttribute("dateSet",dateSet);
 
 		   //grossPayList has all the grossPays in the table
 			  List<Float> grossPayList = new ArrayList<Float>();
 			  for(LocalDate d:dateSet) {
-				grossPayList.add(psutil.grossPayGenerator(d));
+				grossPayList.add(psutil.grossPayGenerator(d,employeeId));
 				   
 			  }
 		   
@@ -117,7 +118,7 @@ public class RegisterController {
 		  
 			  for(LocalDate d:dateSet) {
 				   
-				netPayList.add(psutil.netPayGenerator(d));
+				netPayList.add(psutil.netPayGenerator(d,employeeId));
 				   
 			   }
 			   model.addAttribute("netPayList",netPayList);
@@ -125,7 +126,7 @@ public class RegisterController {
 			   List<Integer> hoursList = new ArrayList<Integer>();
 			  
 			  for(LocalDate d:dateSet) {
-				hoursList.add(psutil.totalHoursGenerator(d));
+				hoursList.add(psutil.totalHoursGenerator(d,employeeId));
 				   
 			   }
 			 model.addAttribute("hoursList",hoursList);
