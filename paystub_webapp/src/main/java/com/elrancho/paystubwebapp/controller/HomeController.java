@@ -38,6 +38,7 @@ public class HomeController {
 	String dbaDesc, dbaType,password;
 	int employeeId;
 	Set<LocalDate> dateSet;
+	boolean ispaySelected=false;
 	 
 	//returns index.jsp
    @RequestMapping("/login")
@@ -57,7 +58,7 @@ public class HomeController {
    
    @PostMapping("/home") 
    public String getHome(@RequestParam("pwd") String pwd, Model model) {
-	   
+	  
 	   password = pwd;
 	   boolean isPasswordValid = usrimpl.passwordValidator(pwd);
 	   System.out.println("isPasswordValid " +isPasswordValid);
@@ -70,6 +71,9 @@ public class HomeController {
 	   
 	 
 	   else {
+		   //ispaySelected = false;
+		   model.addAttribute("ispaySelected", false);
+		   System.out.println("ispaySelected in home "+ispaySelected);
 		   
 		   model.addAttribute("pwd", password);
 		   employeeId = usrimpl.getEmpId(pwd);
@@ -119,9 +123,7 @@ public class HomeController {
  
  @RequestMapping(value="/fetch_paystub")
  
-   public String fetchResult(@RequestParam(value = "to") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate date, Model model) {
-	 
-	 //System.out.println("password"+pwd);  
+   public String fetchResult(@RequestParam(value = "to") @DateTimeFormat(pattern="MM/dd/yyyy") LocalDate date, Model model) { 
 	 model.addAttribute("datepicker2", date);
 	   datePicker = date;
 	   //List of current amounts corresponding to the dates chosen by user
@@ -149,8 +151,9 @@ public class HomeController {
 		   model.addAttribute("errorMsg", errorMsg);
 	   }*/
 	   
-	   
-
+		   ispaySelected = true;
+		   System.out.println("ispaySelected "+ispaySelected);
+		   model.addAttribute("ispaySelected", true);
 	   
 	   return "paystubSummary";
 	

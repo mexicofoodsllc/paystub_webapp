@@ -154,14 +154,14 @@
 	        });
 	    });*/
 	    
-	   /* $(function() { //shorthand document.ready function
+	   $(function() { //shorthand document.ready function
             //$('#paySelected').hide();
 	        $('#dateForm').submit(function() { //use on if jQuery 1.7+
 	           // e.preventDefault();  //prevent form from submitting
 	            $('#totalPaySummary').addClass("hidden")
 	            $('#paySelected').removeClass("hidden");
 	        });
-	    });*/
+	    }); 
   	</script>
 
 </head>
@@ -201,7 +201,7 @@
         <div class="jumbotron">
             
             <div class="calenderdiv_style">
-				<form action="fetch_paystub" id="dateForm" method="post"  onsubmit="document.getElementById('totalPaySummary').style.display = 'none';document.getElementById('paySelected').style.display = '';">
+				<form action="fetch_paystub" id="dateForm" method="post">
             		<!-- <p id="calenderTitle">View paychecks from:</p>
 	            	<input type="text" id="datepicker1" name="from"/>-->
 	            	<p id="calenderTitle">Select date to view Pay stub details:</p> 
@@ -240,7 +240,7 @@
 				  </table>
             </div>
             
-            <div id="paySelected" class="pay_div">
+            <div id="paySelected" class="pay_div hidden">
             	 <table class="table">
 				  <thead>
 				    <tr>

@@ -25,12 +25,7 @@ public class Employee {
 	String state, zipCode, gender, company, businessUnit, badgeNumber, payCategory;
 	String firstName, lastName, username;
 	
-	public Employee(int employeeId, LocalDate birthDate, String ssn, String status) {
-		this.employeeId=employeeId;
-		this.birthDate=birthDate;
-		this.ssn=ssn;
-		this.status = status;
-	}
+
 	public LocalDate getHireDate() {
 		return hireDate;
 	}

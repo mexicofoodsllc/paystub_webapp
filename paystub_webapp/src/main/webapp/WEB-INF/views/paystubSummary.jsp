@@ -157,7 +157,7 @@
 	   $(function() { //shorthand document.ready function
             //$('#paySelected').hide();
 	        $('#dateForm').submit(function() { //use on if jQuery 1.7+
-	           // e.preventDefault();  //prevent form from submitting
+	            e.preventDefault();  //prevent form from submitting
 	            $('#totalPaySummary').addClass("hidden")
 	            $('#paySelected').removeClass("hidden");
 	        });
@@ -214,7 +214,7 @@
 	            	<input type="submit" value="View Paystub Summary"  class="paystub_btn" id="paystubSummary"/>
 	            </form>
 			</div>
-			
+		<c:if test="${ispaySelected eq 'false'}">
            <div id="totalPaySummary" class="pay_div">
             	
                  <table class="table table-hover">
@@ -239,8 +239,9 @@
 				  </tbody>
 				  </table>
             </div>
-            
-            <div id="paySelected" class="pay_div hidden">
+       </c:if>       
+       <c:if test="${ispaySelected eq 'true'}">   
+            <div id="paySelected" class="pay_div">
             	 <table class="table">
 				  <thead>
 				    <tr>
@@ -274,6 +275,7 @@
 					 	</div>
 				  </c:if>
             </div>
+         </c:if>
            </div>
            <div class="footer">
             	<p>&copy ElRancho Supermercado</p>
